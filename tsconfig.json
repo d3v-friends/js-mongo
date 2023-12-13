@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "lib": [
+      "ES5",
+      "ES6"
+    ],
+    "module": "commonjs",
+    "baseUrl": ".",
+    "allowJs": true,
+    "checkJs": false,
+    "inlineSourceMap": true,
+    "esModuleInterop": true,
+    "strict": true,
+    "skipLibCheck": true
+  },
+  "include": [
+    "./ts/**/*.ts"
+  ],
+  "exclude": [
+    "/node_modules"
+  ]
+}
