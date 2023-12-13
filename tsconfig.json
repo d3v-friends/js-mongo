@@ -12,6 +12,9 @@
         "./ts/*",
         "./cjs/*",
         "./esm/*"
+      ],
+      "@js-pure/*": [
+        "./node_modules/js-pure/ts/*"
       ]
     },
     "allowJs": true,

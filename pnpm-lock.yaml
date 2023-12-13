@@ -18,7 +18,7 @@ devDependencies:
     version: 20.10.4
   js-pure:
     specifier: github:d3v-friends/js-pure
-    version: github.com/d3v-friends/js-pure/576c69f28460f54a8e90175713c61e51e3eea862
+    version: github.com/d3v-friends/js-pure/8d0295e34efe5fa63428b08c2fda4da7cedab20b
   prettier:
     specifier: 3.1.1
     version: 3.1.1
@@ -141,8 +141,8 @@ packages:
       webidl-conversions: 7.0.0
     dev: false
 
-  github.com/d3v-friends/js-pure/576c69f28460f54a8e90175713c61e51e3eea862:
-    resolution: {tarball: https://codeload.github.com/d3v-friends/js-pure/tar.gz/576c69f28460f54a8e90175713c61e51e3eea862}
+  github.com/d3v-friends/js-pure/8d0295e34efe5fa63428b08c2fda4da7cedab20b:
+    resolution: {tarball: https://codeload.github.com/d3v-friends/js-pure/tar.gz/8d0295e34efe5fa63428b08c2fda4da7cedab20b}
     name: js-pure
     version: 0.0.1
     engines: {node: 20.10.0}

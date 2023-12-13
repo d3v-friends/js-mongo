@@ -2,7 +2,7 @@ import { Db, ObjectId } from "mongodb";
 
 type Base = {
     _id: ObjectId,
-    name: MangoName,
+    mongoName: MangoName,
     createdAt: Date,
     updatedAt: Date,
 }
@@ -12,36 +12,41 @@ type DocMigrate = Base & {
     nextIdx?: number;
 }
 
-export const docMango = "mangos";
-export type MangoName = "migrate";
+const docMango = "mongos";
+type MangoName = "migrate";
 
 
 async function init(m: Db) {
-    const ls = await m.collection(docMango).listIndexes();
-    if (await ls.hasNext()) {
-        const idx = await ls.next();
-        //todo
-
-        throw new Error("not impl");
+    const col = m.collection<Base>(docMango);
+    const idx = await col.indexExists("mongoName_1");
+    if (idx) {
+        return;
     }
+
+    await col.createIndex({
+        mongoName: 1,
+    }, {
+        name: "mongoName_1",
+        unique: true,
+    });
 }
 
-async function get<T extends { _id: ObjectId }>(m: Db, name: MangoName): Promise<T> {
+async function get<T extends { _id: ObjectId }>(m: Db, mongoName: MangoName): Promise<T> {
     const count = await m.collection(docMango).countDocuments({
-        name,
+        mongoName,
     });
 
     const now = new Date();
     if (count == 0) {
         await m.collection(docMango).insertOne({
             _id: new ObjectId(),
-            name,
+            mongoName,
             createdAt: now,
             updatedAt: now,
         });
     }
 
-    return m.collection<any>(docMango).findOne({ name });
+    return m.collection<any>(docMango).findOne({ mongoName });
 }
 
 type Memo = string;
