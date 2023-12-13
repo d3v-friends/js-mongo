@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "extend mongo driver",
   "scripts": {
-    "bulid": "sh ./build.sh",
+    "build": "sh ./build.sh",
     "update": "pnpm update --recursive"
   },
   "dependencies": {
@@ -18,5 +18,18 @@
   "engineStrict": true,
   "engines": {
     "node": "20.10.0"
+  },
+  "exports": {
+    "@js-mongo/esm/*": {
+      "types": "./esm/**/*.d.ts",
+      "default": "./esm/**/*.ts"
+    },
+    "@js-mongo/cjs/*": {
+      "types": "./cjs/**/*.d.ts",
+      "default": "./cjs/**/*.ts"
+    },
+    "@js-mongo/*": {
+      "default": "./ts/**/*.ts"
+    }
   }
 }
