@@ -1,5 +1,5 @@
 import { Db, ObjectId } from "mongodb";
-import { FnMigrate } from "types";
+import { FnMigrate } from "/type";
 
 type Base = {
     _id: ObjectId,

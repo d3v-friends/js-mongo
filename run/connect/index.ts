@@ -1,5 +1,5 @@
 import { Db, MongoClient } from "mongodb";
-import { ConnectArg } from "types";
+import { ConnectArg } from "/type";
 
 
 function parseConnectArgs({ host }: ConnectArg): string {
