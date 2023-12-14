@@ -5,7 +5,7 @@
       "ES5",
       "ESNext"
     ],
-    "module": "es6",
+    "module": "nodenext",
     "moduleResolution": "nodenext",
     "rootDir": ".",
     "baseUrl": "/",
