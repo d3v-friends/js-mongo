@@ -24,6 +24,9 @@
   "exports": {
     "/": {
       "default": "./index.ts"
+    },
+    "*": {
+      "default": "./*"
     }
   }
 }
