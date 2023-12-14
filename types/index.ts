@@ -8,3 +8,9 @@ export type ConnectArg = {
     password: string;
     database: string;
 }
+export type ResultList<T extends object> = {
+    page: number,
+    size: number,
+    total: number,
+    list: T[],
+}
