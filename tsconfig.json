@@ -5,8 +5,8 @@
       "ES5",
       "ESNext"
     ],
-    "module": "ES6",
-    "moduleResolution": "node",
+    "module": "es6",
+    "moduleResolution": "nodenext",
     "rootDir": ".",
     "baseUrl": "/",
     "allowJs": true,
