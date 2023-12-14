@@ -1,33 +1,23 @@
 {
   "compilerOptions": {
-    "target": "es6",
     "lib": [
+      "ES6",
       "ES5",
-      "ES6"
+      "ESNext"
     ],
-    "module": "commonjs",
+    "module": "ES6",
+    "moduleResolution": "node",
     "baseUrl": ".",
-    "paths": {
-      "@js-mongo/*": [
-        "./ts/*",
-        "./cjs/*",
-        "./esm/*"
-      ],
-      "@js-pure/*": [
-        "./node_modules/js-pure/ts/*"
-      ]
-    },
     "allowJs": true,
     "checkJs": false,
-    "inlineSourceMap": true,
-    "esModuleInterop": true,
-    "strict": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "esModuleInterop": true
   },
   "include": [
-    "./ts/**/*.ts"
+    "./**/*.ts"
   ],
   "exclude": [
-    "/node_modules"
+    "./node_modules",
+    "./dist",
   ]
 }

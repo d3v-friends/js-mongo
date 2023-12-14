@@ -1,35 +1,26 @@
 {
-  "name": "js-mongo",
+  "name": "@d3v-friends/js-mongo",
   "version": "0.0.1",
+  "main": "./index.ts",
   "description": "extend mongo driver",
   "scripts": {
-    "build": "sh ./build.sh",
     "update": "pnpm update --recursive"
   },
   "dependencies": {
-    "mongodb": "6.3.0",
-    "typescript": "5.3.3"
+    "mongodb": "^6.3.0",
+    "typescript": "^5.3.3"
   },
   "devDependencies": {
-    "@types/node": "20.10.4",
-    "js-pure": "github:d3v-friends/js-pure",
-    "prettier": "3.1.1"
+    "prettier": "^3.1.1",
+    "@types/node": "^20.10.4",
+    "@d3v-friends/js-pure": "github:d3v-friends/js-pure"
   },
-  "engineStrict": true,
   "engines": {
     "node": "20.10.0"
   },
   "exports": {
-    "@js-mongo/esm/*": {
-      "types": "./esm/**/*.d.ts",
-      "default": "./esm/**/*.ts"
-    },
-    "@js-mongo/cjs/*": {
-      "types": "./cjs/**/*.d.ts",
-      "default": "./cjs/**/*.ts"
-    },
-    "@js-mongo/*": {
-      "default": "./ts/**/*.ts"
+    ".": {
+      "default": "./index.ts"
     }
   }
 }

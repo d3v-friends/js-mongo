@@ -6,21 +6,21 @@ settings:
 
 dependencies:
   mongodb:
-    specifier: 6.3.0
+    specifier: ^6.3.0
     version: 6.3.0
   typescript:
-    specifier: 5.3.3
+    specifier: ^5.3.3
     version: 5.3.3
 
 devDependencies:
-  '@types/node':
-    specifier: 20.10.4
-    version: 20.10.4
-  js-pure:
+  '@d3v-friends/js-pure':
     specifier: github:d3v-friends/js-pure
-    version: github.com/d3v-friends/js-pure/8d0295e34efe5fa63428b08c2fda4da7cedab20b
+    version: github.com/d3v-friends/js-pure/f33cc084a4de5f720a75fde9b9d98bb42fa12d9f
+  '@types/node':
+    specifier: ^20.10.4
+    version: 20.10.4
   prettier:
-    specifier: 3.1.1
+    specifier: ^3.1.1
     version: 3.1.1
 
 packages:
@@ -141,11 +141,11 @@ packages:
       webidl-conversions: 7.0.0
     dev: false
 
-  github.com/d3v-friends/js-pure/8d0295e34efe5fa63428b08c2fda4da7cedab20b:
-    resolution: {tarball: https://codeload.github.com/d3v-friends/js-pure/tar.gz/8d0295e34efe5fa63428b08c2fda4da7cedab20b}
-    name: js-pure
+  github.com/d3v-friends/js-pure/f33cc084a4de5f720a75fde9b9d98bb42fa12d9f:
+    resolution: {tarball: https://codeload.github.com/d3v-friends/js-pure/tar.gz/f33cc084a4de5f720a75fde9b9d98bb42fa12d9f}
+    name: '@d3v-friends/js-pure'
     version: 0.0.1
-    engines: {node: 20.10.0}
+    engines: {node: ^20.10.0}
     dependencies:
       typescript: 5.3.3
     dev: true

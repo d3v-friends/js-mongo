@@ -7,7 +7,7 @@ type Base = {
     updatedAt: Date,
 }
 
-type DocMigrate = Base & {
+type Index = Base & {
     memo: string[];
     nextIdx?: number;
 }
@@ -52,9 +52,9 @@ async function get<T extends { _id: ObjectId }>(m: Db, mongoName: MangoName): Pr
 type Memo = string;
 export type FnMigrate = (db: Db) => Promise<Memo>;
 
-export default async function migrate(m: Db, fns: FnMigrate[]): Promise<DocMigrate> {
+export default async function migrate(m: Db, fns: FnMigrate[]): Promise<Index> {
     await init(m);
-    const doc = await get<DocMigrate>(m, "migrate");
+    const doc = await get<Index>(m, "migrate");
     doc.nextIdx = doc.nextIdx || 0;
 
     for (let i = doc.nextIdx; i < fns.length; i++) {
@@ -79,5 +79,5 @@ export default async function migrate(m: Db, fns: FnMigrate[]): Promise<DocMigra
 
     }
 
-    return get<DocMigrate>(m, "migrate");
+    return get<Index>(m, "migrate");
 }

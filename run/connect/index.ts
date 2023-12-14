@@ -11,7 +11,7 @@ function parseConnectArgs({ host }: ConnectArg): string {
     return `mongodb://${host}?w=majority`;
 }
 
-export default function connect(i: ConnectArg): Db {
+export default function index(i: ConnectArg): Db {
     const client = new MongoClient(parseConnectArgs(i), {
         auth: {
             username: i.username,
