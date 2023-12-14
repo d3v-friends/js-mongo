@@ -1,4 +1,5 @@
 import { Db, ObjectId } from "mongodb";
+import { FnMigrate } from "types";
 
 type Base = {
     _id: ObjectId,
@@ -49,8 +50,6 @@ async function get<T extends { _id: ObjectId }>(m: Db, mongoName: MangoName): Pr
     return m.collection<any>(docMango).findOne({ mongoName });
 }
 
-type Memo = string;
-export type FnMigrate = (db: Db) => Promise<Memo>;
 
 export default async function migrate(m: Db, fns: FnMigrate[]): Promise<Index> {
     await init(m);

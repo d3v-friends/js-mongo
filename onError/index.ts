@@ -1,6 +1,6 @@
 import { JsError } from "@d3v-friends/js-pure/fnError";
 
 type Key = string;
-const mError: Record<Key, JsError> = {};
+const onError: Record<Key, JsError> = {};
 
-export default mError;
+export default onError;

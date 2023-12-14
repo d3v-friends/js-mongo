@@ -1,11 +1,6 @@
 import { Db, MongoClient } from "mongodb";
+import { ConnectArg } from "types";
 
-export type ConnectArg = {
-    host: string,
-    username: string;
-    password: string;
-    database: string;
-}
 
 function parseConnectArgs({ host }: ConnectArg): string {
     return `mongodb://${host}?w=majority`;
