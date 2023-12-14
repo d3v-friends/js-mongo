@@ -14,3 +14,7 @@ export type ResultList<T extends object> = {
     total: number,
     list: T[],
 }
+export type PageArgs = {
+    page: number,
+    size: number,
+}
