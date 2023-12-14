@@ -1,5 +1,5 @@
-import connect from "run/connect";
-import migrate from "run/migrate";
+import connect from "/run/connect";
+import migrate from "/run/migrate";
 
 const jsMongo = {
     connect,
