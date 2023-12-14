@@ -23,7 +23,7 @@
   },
   "exports": {
     ".": {
-      "default": "./"
+      "default": "./**/*.ts"
     }
   }
 }
