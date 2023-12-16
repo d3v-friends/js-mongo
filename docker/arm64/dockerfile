@@ -1,0 +1,8 @@
+FROM arm64v8/mongo:jammy
+
+RUN openssl rand -base64 756 > /mongodb.key
+RUN chmod 400 /mongodb.key
+RUN chown 999:999 /mongodb.key
+
+EXPOSE 27017
+CMD ["mongod"]

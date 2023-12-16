@@ -1,0 +1,22 @@
+version: "3.8"
+services:
+  mongodb:
+    image: docker.stdlib.in/mango-arm64:jammy
+    container_name: mongo
+    command: [
+      "mongod",
+      "--bind_ip_all",
+      "--keyFile", "/mongodb.key",
+      "--wiredTigerCacheSizeGB", "2",
+    ]
+    environment:
+      TZ: "utc"
+      MONGO_INITDB_ROOT_USERNAME: "root"
+      MONGO_INITDB_ROOT_PASSWORD: "local1234"
+    ports:
+      - "27017:27017"
+    logging:
+      driver: "json-file"
+      options:
+        max-file: "5"
+        max-size: "10m"

@@ -1,11 +1,12 @@
 import { JestConfigWithTsJest } from "ts-jest";
 
 const config: JestConfigWithTsJest = {
+    verbose: true,
     preset: "ts-jest",
-    testEnvironment: "node",
-    testRegex: "^.+_test.(ts|tsx|js)$",
+    testRegex: "^.+[ts|js|tsx|jsx]$",
+    transform: {},
     moduleNameMapper: {
-        // "^@fn/(.*)$": "<rootDir>/fn/$1",
+        "^@src/(.*)$": "<rootDir>/ts/$1"
     },
 };
 
