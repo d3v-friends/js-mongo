@@ -11,3 +11,11 @@ export type ResultList<RES extends object> = {
     total: number;
     list: RES[];
 };
+
+export type DateQuery = Partial<{
+    $lt: Date;
+    $lte: Date;
+    $eq: Date;
+    $gt: Date;
+    $gte: Date;
+}>;
