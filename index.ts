@@ -1,3 +1,2 @@
-export * as fnMongo from "func";
-export * as Doc from "doc";
-
+export { fnMongo } from "./func";
+export * from "type";

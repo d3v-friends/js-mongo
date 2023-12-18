@@ -21,33 +21,12 @@ export type DateQuery = Partial<{
 }>;
 
 export type FnMigrate<DATA extends object> = (col: Collection<DATA>) => Promise<void>;
-export type Schema<DATA extends object> = {
-    migrate: FnMigrate<DATA>[];
-    colNm: string;
-};
 
-export interface IfModel<DATA extends object> {
-    getColNm(): string;
-
-    getMigrate(): FnMigrate<DATA>[];
-}
-
-export abstract class Model<DATA extends object> implements IfModel<DATA> {
-    protected constructor(
-        protected readonly colNm: string,
-        protected readonly migrate: FnMigrate<DATA>[],
-    ) {
-    }
+export abstract class Docs<DATA extends object> {
+    public readonly abstract colNm: string;
+    public readonly abstract migrate: FnMigrate<DATA>[];
 
     protected getCol(db: Db): Collection<DATA> {
         return db.collection<DATA>(this.colNm);
-    }
-
-    public getColNm(): string {
-        return this.colNm;
-    }
-
-    public getMigrate(): FnMigrate<DATA>[] {
-        return this.migrate;
     }
 }
