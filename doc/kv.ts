@@ -79,7 +79,7 @@ const fn = {
 
         if (!res) {
             throw new fnErr.Error(
-                fnErr.msg("not found key_value", {
+                fnErr.getMsg("not found key_value", {
                     key,
                 }),
                 {

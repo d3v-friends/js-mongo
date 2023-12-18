@@ -8,7 +8,7 @@ async function findOne<RES extends object>(col: Collection<RES>, filter: object,
     const res = await col.findOne<RES>(filter, opt);
     if (!res) {
         throw new fnErr.Error(
-            fnErr.msg("not found model", {
+            fnErr.getMsg("not found model", {
                 colNm: col.collectionName,
                 filter: filter,
                 opt,
@@ -54,7 +54,7 @@ async function parseCur<RES extends object>(cur: FindCursor<RES>): Promise<RES[]
         const doc = await cur.next();
         if (!doc) {
             throw new fnErr.Error(
-                fnErr.msg("fail decode cursor", {
+                fnErr.getMsg("fail decode cursor", {
                     namespace: cur.namespace,
                     evName: cur.eventNames(),
                 }),
