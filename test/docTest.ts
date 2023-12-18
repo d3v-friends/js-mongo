@@ -1,5 +1,6 @@
 import { Collection, Db, IndexDirection, ObjectId, Sort } from "mongodb";
-import { fnMongo, Schema } from "@src";
+import { Schema } from "@src/type";
+import { fnMongo } from "@src/index";
 
 type Test = {
     _id: ObjectId;
@@ -17,10 +18,7 @@ const fn = {
     create: async (db: Db, i: {}): Promise<Test> => {
         throw new Error("not impl");
     },
-    filter: ({
-        id,
-        username,
-    }: Partial<{
+    filter: ({ id, username }: Partial<{
         id: ObjectId[];
         username: Partial<{
             exact: string;
@@ -49,8 +47,8 @@ const fn = {
         return res;
     },
     sort: ({
-        username,
-    }: Partial<{
+               username,
+           }: Partial<{
         username: IndexDirection;
     }>): Sort => {
         const res: any = {};
@@ -73,26 +71,7 @@ const DocTest: Schema<Test> & typeof fn = {
     colNm,
     migrate: [
         async col => {
-            await col.createIndexes([
-                {
-                    key: {
-                        username: 1,
-                    },
-                    unique: true,
-                },
-                {
-                    key: {
-                        username: 1,
-                    },
-                    unique: true,
-                },
-                {
-                    key: {
-                        username: 1,
-                        saltedPassword: 1,
-                    },
-                },
-            ]);
+            await col.createIndexes([]);
         },
     ],
     ...fn,

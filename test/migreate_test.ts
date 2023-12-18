@@ -1,5 +1,5 @@
 import { beforeAll, describe, test } from "@jest/globals";
-import { fnMongo } from "@src";
+import { fnMongo } from "@src/index";
 import { Db } from "mongodb";
 import { fnEnv } from "@js-pure";
 

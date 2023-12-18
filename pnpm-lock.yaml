@@ -7,7 +7,7 @@ settings:
 dependencies:
   '@js-pure':
     specifier: github:d3v-friends/js-pure
-    version: github.com/d3v-friends/js-pure/eb29cd90b85020ee9653f15f625808cdaa8ad1a3
+    version: github.com/d3v-friends/js-pure/dfd3b023cc16a1934576ebbc5e1c4def8735e8ac
   mongodb:
     specifier: 6.3.0
     version: 6.3.0
@@ -2703,8 +2703,8 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  github.com/d3v-friends/js-pure/eb29cd90b85020ee9653f15f625808cdaa8ad1a3:
-    resolution: {tarball: https://codeload.github.com/d3v-friends/js-pure/tar.gz/eb29cd90b85020ee9653f15f625808cdaa8ad1a3}
+  github.com/d3v-friends/js-pure/dfd3b023cc16a1934576ebbc5e1c4def8735e8ac:
+    resolution: {tarball: https://codeload.github.com/d3v-friends/js-pure/tar.gz/dfd3b023cc16a1934576ebbc5e1c4def8735e8ac}
     name: '@d3v-friends/js-pure'
     version: 0.0.1
     engines: {node: 20.10.0}

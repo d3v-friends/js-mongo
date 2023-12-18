@@ -27,21 +27,16 @@
     "rootDir": "./ts",
     "paths": {
       "@src/*": [
-        "./ts/*"
-      ],
-      "@src": [
-        "./ts/index.ts"
+        "./*"
       ]
     }
   },
   "include": [
-    "./ts",
+    "./*",
     "./test"
   ],
   "exclude": [
     "./node_modules",
-    "./cjs",
-    "./mjs",
     "./etc"
   ]
 }

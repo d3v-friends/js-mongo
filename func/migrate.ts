@@ -1,5 +1,5 @@
-import { fnErr } from "@js-pure";
 import { Db } from "mongodb";
+import { fnErr } from "@js-pure";
 import { DocKv } from "@src/doc";
 import { Schema } from "@src/type";
 

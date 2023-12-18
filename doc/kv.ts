@@ -1,6 +1,6 @@
 import { fnErr } from "@js-pure";
-import { Collection, Db, ObjectId } from "mongodb";
 import { Schema } from "@src/type";
+import { Collection, Db, ObjectId } from "mongodb";
 
 type Kv = {
     _id: ObjectId;
