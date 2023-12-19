@@ -1,1 +1,3 @@
-export { DocKv } from "./kv";
+export { default as DocKv } from "./kv";
+
+

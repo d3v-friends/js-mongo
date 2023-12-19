@@ -1,37 +1,38 @@
 import { Db } from "mongodb";
 import { fnErr } from "@js-pure";
-import { Kv } from "@src/doc";
-import { Schema } from "@src/type";
+import { DocKv } from "@src/doc";
+import { Docs } from "@src/type";
 
-export default async function migrate(db: Db, ...models: Schema<any>[]): Promise<void> {
-    models = [Kv, ...models];
+export default async function(db: Db, ...models: Docs<any>[]): Promise<void> {
+    const docKv = new DocKv();
+    models = [docKv, ...models];
     await createCollection(db, models);
 
-    const isMig = await Kv.getBool(db, keyMigration, false);
+    const isMig = await docKv.get(db, keyMigration, false);
     if (isMig) {
         throw new fnErr.Error("in processing migration", {
             ko: "마이그레이션이 이미 실행중입니다.",
         });
     }
 
-    await Kv.set(db, keyMigration, true);
+    await docKv.set(db, keyMigration, true);
 
     for (const model of models) {
         const key = `mig_${model.colNm}`;
-        const idx = await Kv.getInt(db, key, 0);
+        const idx = await docKv.get(db, key, 0);
         for (let i = idx; i < model.migrate.length; i++) {
             const fn = model.migrate[i];
             await fn(db.collection(model.colNm));
-            await Kv.set(db, key, i + 1);
+            await docKv.set(db, key, i + 1);
         }
     }
 
-    await Kv.set(db, keyMigration, false);
+    await docKv.set(db, keyMigration, false);
 }
 
 const keyMigration = "migration";
 
-async function createCollection(db: Db, models: Schema<any>[]): Promise<void> {
+async function createCollection(db: Db, models: Docs<any>[]): Promise<void> {
     const cur = db.listCollections({}, { nameOnly: true });
     const ls: string[] = [];
     while (await cur.hasNext()) {

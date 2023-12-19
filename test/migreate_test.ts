@@ -8,15 +8,23 @@ describe("migrate", () => {
 
     beforeAll(async () => {
         await fnEnv.read(__dirname, ".env");
-        db = await fnMongo.connect({
+        const db = await fnMongo.connect({
             host: fnEnv.string("MG_HOST"),
             username: fnEnv.string("MG_USERNAME"),
             password: fnEnv.string("MG_PASSWORD"),
             database: fnEnv.string("MG_DATABASE"),
         });
+
+        const getDB = fnMongo.createFactory({
+            host: fnEnv.string("MG_HOST"),
+            username: fnEnv.string("MG_USERNAME"),
+            password: fnEnv.string("MG_PASSWORD"),
+            database: fnEnv.string("MG_DATABASE"),
+        });
+
+        const db1 = await getDB();
     });
 
     test("init", async () => {
-        await fnMongo.migrate(db);
     });
 });

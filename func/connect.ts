@@ -9,13 +9,7 @@ type ConnectArg = {
 
 type ConnFactory = () => Promise<Db>;
 
-export function connFactory(v: ConnectArg): ConnFactory {
-    return async () => {
-        return connect(v);
-    };
-}
-
-export async function connect({ host, username, password, database }: ConnectArg): Promise<Db> {
+async function connect({ host, username, password, database }: ConnectArg): Promise<Db> {
     const client = new MongoClient(`mongodb://${host}`, {
         auth: {
             username,
@@ -24,3 +18,16 @@ export async function connect({ host, username, password, database }: ConnectArg
     });
     return client.db(database);
 }
+
+function createFactory(v: ConnectArg): ConnFactory {
+    return async () => {
+        return connect(v);
+    };
+}
+
+const fnConnect = {
+    connect,
+    createFactory,
+};
+
+export default fnConnect;

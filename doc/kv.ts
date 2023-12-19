@@ -9,7 +9,7 @@ type Kv = {
     updatedAt: Date;
 }
 
-export class DocKv extends Docs<Kv> {
+export default class DocKv extends Docs<Kv> {
     public readonly colNm: string;
     public readonly migrate: FnMigrate<Kv>[];
 
@@ -68,6 +68,4 @@ export class DocKv extends Docs<Kv> {
                 },
             });
     }
-
-
 }
