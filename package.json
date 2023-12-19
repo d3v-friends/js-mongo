@@ -23,8 +23,7 @@
   "main": "./index.ts",
   "type": "module",
   "exports": {
-    ".": "./index.ts",
-    "./*": "./*"
+    ".": "./index.ts"
   },
   "engines": {
     "node": "20.10.0"

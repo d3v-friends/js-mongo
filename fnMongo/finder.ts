@@ -69,10 +69,8 @@ async function parseCur<RES extends object>(cur: FindCursor<RES>): Promise<RES[]
     return res;
 }
 
-const fnFinder = {
+export default {
     one: findOne,
     all: findAll,
     list: findList,
 };
-
-export default fnFinder;

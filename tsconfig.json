@@ -5,15 +5,12 @@
       "es6"
     ],
     "target": "es5",
-    "module": "es6",
+    "module": "esnext",
     "moduleResolution": "bundler",
     "allowJs": true,
     "checkJs": false,
     "skipLibCheck": true,
     "esModuleInterop": true,
-    "inlineSourceMap": true,
-    "removeComments": true,
-    "declaration": true,
     // type check
     "strict": true,
     "alwaysStrict": true,
@@ -21,6 +18,10 @@
     "strictFunctionTypes": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
+    // info
+    "removeComments": true,
+    "inlineSourceMap": true,
+    "declaration": true,
     // paths
     "rootDir": ".",
     "paths": {
@@ -30,8 +31,7 @@
     }
   },
   "include": [
-    "./*",
-    "./test"
+    "./*"
   ],
   "exclude": [
     "./node_modules",

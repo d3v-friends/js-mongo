@@ -9,7 +9,7 @@ type Kv = {
     updatedAt: Date;
 }
 
-export default class DocKv extends Docs<Kv> {
+export default class extends Docs<Kv> {
     public readonly colNm: string;
     public readonly migrate: FnMigrate<Kv>[];
     public readonly db: Db;
@@ -44,17 +44,20 @@ export default class DocKv extends Docs<Kv> {
                 });
             }
 
-            await col.insertOne({
-                _id: new ObjectId(),
-                key,
-                value: JSON.stringify(defaults[0]),
-                updatedAt: new Date(),
-            });
+            const value = JSON.stringify(defaults[0]);
+
+            // await col.insertOne({
+            //     _id: new ObjectId(),
+            //     key,
+            //     value,
+            //     updatedAt: new Date(),
+            // });
 
             return defaults[0];
         }
 
-        return JSON.parse(res.value);
+        throw new Error("not impl");
+        // return JSON.parse(res.value);
     }
 
     public async set<Input>(key: string, value: Input) {

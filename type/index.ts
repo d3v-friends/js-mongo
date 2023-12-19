@@ -1,4 +1,4 @@
-import { Collection, Db } from "mongodb";
+import { Collection, Db, WithId } from "mongodb";
 
 export type Pager = {
     page: number;
@@ -22,7 +22,7 @@ export type DateQuery = Partial<{
 
 export type FnMigrate<DATA extends object> = (col: Collection<DATA>) => Promise<void>;
 
-export abstract class Docs<DATA extends object> {
+export abstract class Docs<DATA = WithId<DATA>> {
     public readonly abstract colNm: string;
     public readonly abstract migrate: FnMigrate<DATA>[];
     public readonly abstract db: Db;

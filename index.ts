@@ -1,3 +1,2 @@
-export { fnMongo } from "./func";
-export { DocKv } from "./doc";
-export * from "./type";
+export * as fnMongo from "@src/fnMongo";
+export { DocKv } from "@src/doc";

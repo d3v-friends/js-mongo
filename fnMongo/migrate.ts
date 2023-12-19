@@ -3,6 +3,24 @@ import { fnErr } from "@js-pure";
 import { DocKv } from "@src/doc";
 import { Docs } from "@src/type";
 
+
+const keyMigration = "migration";
+
+async function createCollection(db: Db, models: Docs<any>[]): Promise<void> {
+    const cur = db.listCollections({}, { nameOnly: true });
+    const ls: string[] = [];
+    while (await cur.hasNext()) {
+        const col = await cur.next();
+        if (!col) continue;
+        ls.push(col.name);
+    }
+
+    for (let model of models) {
+        if (ls.includes(model.colNm)) continue;
+        await db.createCollection(model.colNm);
+    }
+}
+
 export default async function(db: Db, ...models: Docs<any>[]): Promise<void> {
     const docKv = new DocKv(db);
     models = [docKv, ...models];
@@ -28,21 +46,4 @@ export default async function(db: Db, ...models: Docs<any>[]): Promise<void> {
     }
 
     await docKv.set(keyMigration, false);
-}
-
-const keyMigration = "migration";
-
-async function createCollection(db: Db, models: Docs<any>[]): Promise<void> {
-    const cur = db.listCollections({}, { nameOnly: true });
-    const ls: string[] = [];
-    while (await cur.hasNext()) {
-        const col = await cur.next();
-        if (!col) continue;
-        ls.push(col.name);
-    }
-
-    for (let model of models) {
-        if (ls.includes(model.colNm)) continue;
-        await db.createCollection(model.colNm);
-    }
 }

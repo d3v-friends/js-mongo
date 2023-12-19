@@ -25,9 +25,7 @@ function createFactory(v: ConnectArg): ConnFactory {
     };
 }
 
-const fnConnect = {
+export default {
     connect,
     createFactory,
 };
-
-export default fnConnect;
