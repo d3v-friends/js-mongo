@@ -1,4 +1,3 @@
-import { fnParam } from "@js-pure";
 import { Collection, Db } from "mongodb";
 
 export type Pager = {
