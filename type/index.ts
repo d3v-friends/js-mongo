@@ -1,3 +1,4 @@
+import { fnParam } from "@js-pure";
 import { Collection, Db } from "mongodb";
 
 export type Pager = {
@@ -30,3 +31,20 @@ export abstract class Docs<DATA extends object> {
         return db.collection<DATA>(this.colNm);
     }
 }
+
+export type Bool = "true" | "false";
+
+
+// todo 연구해보기 template literal types : https://www.typescriptlang.org/docs/handbook/2/template-literal-types.html
+// type IsBool<T> = {
+//     value<K extends string & keyof T>(): boolean;
+// }
+//
+// declare function makeBoolObject<T>(v: T): T & IsBool<T>;
+//
+// const a = makeBoolObject({
+//     elem: "true",
+// });
+//
+// a.value()
+
