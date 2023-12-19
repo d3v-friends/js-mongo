@@ -14,7 +14,6 @@
     "inlineSourceMap": true,
     "removeComments": true,
     "declaration": true,
-    "outDir": "./cjs",
     // type check
     "strict": true,
     "alwaysStrict": true,
@@ -23,7 +22,7 @@
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     // paths
-    "rootDir": "./ts",
+    "rootDir": ".",
     "paths": {
       "@src/*": [
         "./*"
