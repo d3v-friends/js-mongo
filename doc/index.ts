@@ -1,3 +1,4 @@
-export { default as DocKv } from "./kv";
+import DocKv from "./kv";
 
+export { DocKv };
 

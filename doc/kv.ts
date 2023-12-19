@@ -12,9 +12,11 @@ type Kv = {
 export default class DocKv extends Docs<Kv> {
     public readonly colNm: string;
     public readonly migrate: FnMigrate<Kv>[];
+    public readonly db: Db;
 
-    constructor(...colNms: string[]) {
+    constructor(db: Db, ...colNms: string[]) {
         super();
+        this.db = db;
         this.colNm = fnParam.string(colNms, "kvs");
         this.migrate = [
             async col => {
@@ -30,8 +32,8 @@ export default class DocKv extends Docs<Kv> {
         ];
     }
 
-    public async get<Input>(db: Db, key: string, ...defaults: Input[]): Promise<Input> {
-        const col = this.getCol(db);
+    public async get<Input>(key: string, ...defaults: Input[]): Promise<Input> {
+        const col = this.getCol();
         const res = await col.findOne({ key });
         if (!res) {
             if (defaults.length === 0) {
@@ -55,8 +57,8 @@ export default class DocKv extends Docs<Kv> {
         return JSON.parse(res.value);
     }
 
-    public async set<Input>(db: Db, key: string, value: Input) {
-        const col = this.getCol(db);
+    public async set<Input>(key: string, value: Input) {
+        const col = this.getCol();
         await col.updateOne(
             {
                 key,
@@ -68,4 +70,6 @@ export default class DocKv extends Docs<Kv> {
                 },
             });
     }
+
+
 }

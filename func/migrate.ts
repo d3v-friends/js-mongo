@@ -4,30 +4,30 @@ import { DocKv } from "@src/doc";
 import { Docs } from "@src/type";
 
 export default async function(db: Db, ...models: Docs<any>[]): Promise<void> {
-    const docKv = new DocKv();
+    const docKv = new DocKv(db);
     models = [docKv, ...models];
     await createCollection(db, models);
 
-    const isMig = await docKv.get(db, keyMigration, false);
+    const isMig = await docKv.get(keyMigration, false);
     if (isMig) {
         throw new fnErr.Error("in processing migration", {
             ko: "마이그레이션이 이미 실행중입니다.",
         });
     }
 
-    await docKv.set(db, keyMigration, true);
+    await docKv.set(keyMigration, true);
 
     for (const model of models) {
         const key = `mig_${model.colNm}`;
-        const idx = await docKv.get(db, key, 0);
+        const idx = await docKv.get(key, 0);
         for (let i = idx; i < model.migrate.length; i++) {
             const fn = model.migrate[i];
             await fn(db.collection(model.colNm));
-            await docKv.set(db, key, i + 1);
+            await docKv.set(key, i + 1);
         }
     }
 
-    await docKv.set(db, keyMigration, false);
+    await docKv.set(keyMigration, false);
 }
 
 const keyMigration = "migration";
