@@ -20,7 +20,7 @@ async function connect({ host, username, password, database }: ConnectArg): Prom
 }
 
 function createFactory(v: ConnectArg): ConnFactory {
-    return async () => {
+    return () => {
         return connect(v);
     };
 }
