@@ -1,8 +1,6 @@
-rm -rf cjs
-rm -rf mjs
-
-tsc -p ./tsconfig.cjs.json
-tsc -p ./tsconfig.mjs.json
-
-git add ./cjs --all
-git add ./mjs --all
+# pnpm add -D esbuild
+# pnpm add -D dts-bundle-generator
+rm -rf ./dist
+node ./config/esbuild.js
+dts-bundle-generator --config ./config/dts.js
+git add ./dist --all

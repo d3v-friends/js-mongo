@@ -7,7 +7,7 @@ settings:
 dependencies:
   '@js-pure':
     specifier: github:d3v-friends/js-pure
-    version: github.com/d3v-friends/js-pure/73653f2df5c36f5723d5334fd34bbcb751980b3a
+    version: github.com/d3v-friends/js-pure/eb29cd90b85020ee9653f15f625808cdaa8ad1a3
   mongodb:
     specifier: 6.3.0
     version: 6.3.0
@@ -675,7 +675,7 @@ packages:
     engines: {node: '>= 8'}
     dependencies:
       '@nodelib/fs.scandir': 2.1.5
-      fastq: 1.16.0
+      fastq: 1.15.0
     dev: true
 
   /@sinclair/typebox@0.27.8:
@@ -957,7 +957,7 @@ packages:
     hasBin: true
     dependencies:
       caniuse-lite: 1.0.30001570
-      electron-to-chromium: 1.4.615
+      electron-to-chromium: 1.4.614
       node-releases: 2.0.14
       update-browserslist-db: 1.0.13(browserslist@4.22.2)
     dev: true
@@ -1181,8 +1181,8 @@ packages:
       path-type: 4.0.0
     dev: true
 
-  /electron-to-chromium@1.4.615:
-    resolution: {integrity: sha512-/bKPPcgZVUziECqDc+0HkT87+0zhaWSZHNXqF8FLd2lQcptpmUFwoCSWjCdOng9Gdq+afKArPdEg/0ZW461Eng==}
+  /electron-to-chromium@1.4.614:
+    resolution: {integrity: sha512-X4ze/9Sc3QWs6h92yerwqv7aB/uU8vCjZcrMjA8N9R1pjMFRe44dLsck5FzLilOYvcXuDn93B+bpGYyufc70gQ==}
     dev: true
 
   /emittery@0.13.1:
@@ -1267,8 +1267,8 @@ packages:
     resolution: {integrity: sha512-lhd/wF+Lk98HZoTCtlVraHtfh5XYijIjalXck7saUtuanSDyLMxnHhSXEDJqHxD7msR8D0uCmqlkwjCV8xvwHw==}
     dev: true
 
-  /fastq@1.16.0:
-    resolution: {integrity: sha512-ifCoaXsDrsdkWTtiNJX5uzHDsrck5TzfKKDcuFFTIrrc/BS076qgEIfoIy1VeZqViznfKiysPYTh/QeHtnIsYA==}
+  /fastq@1.15.0:
+    resolution: {integrity: sha512-wBrocU2LCXXa+lWBt8RoIRD89Fi8OdABODa/kEnyeyjS5aZO5/GNvI5sEINADqP/h8M29UHTHUb53sUu5Ihqdw==}
     dependencies:
       reusify: 1.0.4
     dev: true
@@ -2703,20 +2703,11 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  github.com/d3v-friends/js-pure/73653f2df5c36f5723d5334fd34bbcb751980b3a:
-    resolution: {tarball: https://codeload.github.com/d3v-friends/js-pure/tar.gz/73653f2df5c36f5723d5334fd34bbcb751980b3a}
+  github.com/d3v-friends/js-pure/eb29cd90b85020ee9653f15f625808cdaa8ad1a3:
+    resolution: {tarball: https://codeload.github.com/d3v-friends/js-pure/tar.gz/eb29cd90b85020ee9653f15f625808cdaa8ad1a3}
     name: '@d3v-friends/js-pure'
     version: 0.0.1
     engines: {node: 20.10.0}
     dependencies:
-      mongodb: 6.3.0
       typescript: 5.3.3
-    transitivePeerDependencies:
-      - '@aws-sdk/credential-providers'
-      - '@mongodb-js/zstd'
-      - gcp-metadata
-      - kerberos
-      - mongodb-client-encryption
-      - snappy
-      - socks
     dev: false
