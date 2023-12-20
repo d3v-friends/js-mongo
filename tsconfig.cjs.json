@@ -1,0 +1,20 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "rootDir": "./ts",
+    "outDir": "./cjs"
+  },
+  "include": [
+    "./ts"
+  ],
+  "exclude": [
+    "./ts/test",
+    "./node_modules",
+    "./jest.config.ts",
+    "./webpack.config.ts",
+    "./cjs",
+    "./mjs"
+  ]
+}

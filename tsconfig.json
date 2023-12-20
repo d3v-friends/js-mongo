@@ -2,39 +2,49 @@
   "compilerOptions": {
     "lib": [
       "es5",
-      "es6"
+      "es6",
+      "esnext"
     ],
     "target": "es5",
     "module": "esnext",
     "moduleResolution": "bundler",
+    "esModuleInterop": true,
     "allowJs": true,
     "checkJs": false,
     "skipLibCheck": true,
-    "esModuleInterop": true,
     // type check
     "strict": true,
     "alwaysStrict": true,
     "strictNullChecks": true,
     "strictFunctionTypes": true,
+    "strictPropertyInitialization": true,
+    "noUnusedParameters": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
-    // info
-    "removeComments": true,
-    "inlineSourceMap": true,
-    "declaration": true,
+    "isolatedModules": false,
+    "noImplicitAny": false,
     // paths
-    "rootDir": ".",
-    "paths": {
-      "@src/*": [
-        "./*"
-      ]
+    "rootDir": "./ts",
+    // compile types,
+    "inlineSourceMap": true,
+    "removeComments": true,
+    "declaration": true,
+    // d.ts only compile
+    "emitDeclarationOnly": false
+  },
+  "ts-node": {
+    "compilerOptions": {
+      "module": "commonjs"
     }
   },
   "include": [
-    "./*"
+    "./ts/*"
   ],
   "exclude": [
     "./node_modules",
-    "./etc"
+    "./jest.config.ts",
+    "./webpack.config.ts",
+    "./cjs",
+    "./mjs"
   ]
 }

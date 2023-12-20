@@ -1,5 +1,5 @@
-import { fnErr } from "@js-pure";
-import { Pager, ResultList } from "@src/type";
+import { JsError } from "@js-pure";
+import type { Pager, ResultList } from "../type";
 import { Collection, FindCursor, FindOptions, Sort } from "mongodb";
 
 async function findOne<RES extends object>(col: Collection<RES>, filter: object, ...sorts: Sort[]): Promise<RES> {
@@ -7,12 +7,13 @@ async function findOne<RES extends object>(col: Collection<RES>, filter: object,
     if (sorts.length !== 0) opt.sort = sorts[0];
     const res = await col.findOne<RES>(filter, opt);
     if (!res) {
-        throw new fnErr.Error(
-            fnErr.getMsg("not found model", {
+        throw new JsError(
+            "not found model",
+            {
                 colNm: col.collectionName,
                 filter: filter,
                 opt,
-            }),
+            },
             {
                 ko: "데이터 조회 실패",
             },
@@ -53,11 +54,12 @@ async function parseCur<RES extends object>(cur: FindCursor<RES>): Promise<RES[]
     while (await cur.hasNext()) {
         const doc = await cur.next();
         if (!doc) {
-            throw new fnErr.Error(
-                fnErr.getMsg("fail decode cursor", {
+            throw new JsError(
+                "fail decode cursor",
+                {
                     namespace: cur.namespace,
                     evName: cur.eventNames(),
-                }),
+                },
                 {
                     ko: "리스트 조회 실패",
                 },

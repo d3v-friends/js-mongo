@@ -1,12 +1,12 @@
+import { JsError } from "@js-pure";
 import { Db } from "mongodb";
-import { fnErr } from "@js-pure";
-import { DocKv } from "@src/doc";
-import { Docs } from "@src/type";
+import { DocKv } from "../doc";
+import { Docs } from "../type";
 
 
 const keyMigration = "migration";
 
-async function createCollection(db: Db, models: Docs<any>[]): Promise<void> {
+async function createCollection(db: Db, models: Docs[]): Promise<void> {
     const cur = db.listCollections({}, { nameOnly: true });
     const ls: string[] = [];
     while (await cur.hasNext()) {
@@ -21,14 +21,13 @@ async function createCollection(db: Db, models: Docs<any>[]): Promise<void> {
     }
 }
 
-export default async function(db: Db, ...models: Docs<any>[]): Promise<void> {
+export default async function(db: Db, ...models: Docs[]): Promise<void> {
     const docKv = new DocKv(db);
-    models = [docKv, ...models];
-    await createCollection(db, models);
+    await createCollection(db, [docKv, ...models]);
 
     const isMig = await docKv.get(keyMigration, false);
     if (isMig) {
-        throw new fnErr.Error("in processing migration", {
+        throw new JsError("in processing migration", {}, {
             ko: "마이그레이션이 이미 실행중입니다.",
         });
     }

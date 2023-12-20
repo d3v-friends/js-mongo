@@ -1,15 +1,15 @@
+import { fnParam, JsError } from "@js-pure";
 import { Db, ObjectId } from "mongodb";
-import { Docs, FnMigrate } from "@src/type";
-import { fnErr, fnParam } from "@js-pure";
+import { Docs, FnMigrate } from "../type";
 
-type Kv = {
+export interface Kv {
     _id: ObjectId;
     key: string;
     value: string;
     updatedAt: Date;
 }
 
-export default class extends Docs<Kv> {
+export default class DocKv extends Docs<Kv> {
     public readonly colNm: string;
     public readonly migrate: FnMigrate<Kv>[];
     public readonly db: Db;
@@ -37,27 +37,27 @@ export default class extends Docs<Kv> {
         const res = await col.findOne({ key });
         if (!res) {
             if (defaults.length === 0) {
-                throw new fnErr.Error(fnErr.getMsg("not found kv", {
-                    key,
-                }), {
-                    ko: "내부서버오류",
-                });
+                throw new JsError(
+                    "not found value",
+                    { key },
+                    {
+                        ko: "내부서버오류",
+                    });
             }
 
             const value = JSON.stringify(defaults[0]);
 
-            // await col.insertOne({
-            //     _id: new ObjectId(),
-            //     key,
-            //     value,
-            //     updatedAt: new Date(),
-            // });
+            await col.insertOne({
+                _id: new ObjectId(),
+                key,
+                value,
+                updatedAt: new Date(),
+            });
 
             return defaults[0];
         }
 
         throw new Error("not impl");
-        // return JSON.parse(res.value);
     }
 
     public async set<Input>(key: string, value: Input) {
@@ -73,6 +73,4 @@ export default class extends Docs<Kv> {
                 },
             });
     }
-
-
 }

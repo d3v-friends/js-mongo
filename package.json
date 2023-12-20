@@ -20,12 +20,18 @@
     "ts-node": "10.9.2",
     "tsc-alias": "1.8.8"
   },
-  "main": "./index.ts",
-  "type": "module",
+  "main": "./cjs/index.js",
+  "types": "./cjs/index.d.ts",
+  "type": "commonjs",
   "exports": {
-    ".": "./index.ts"
+    ".": {
+      "import": "./mjs/index.js",
+      "require": "./cjs/index.js",
+      "node": "./cjs/index.js",
+      "default": "./mjs/index.js"
+    }
   },
   "engines": {
-    "node": "20.10.0"
+    "node": "^20.10.0"
   }
 }

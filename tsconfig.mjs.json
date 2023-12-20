@@ -1,0 +1,18 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "rootDir": "./ts",
+    "outDir": "./mjs",
+  },
+  "include": [
+    "./ts"
+  ],
+  "exclude": [
+    "./ts/test",
+    "./node_modules",
+    "./jest.config.ts",
+    "./webpack.config.ts",
+    "./cjs",
+    "./mjs"
+  ]
+}
