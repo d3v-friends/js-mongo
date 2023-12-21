@@ -25,7 +25,7 @@ export const findOne = async <RES extends object>(col: Collection<RES>, filter: 
 export const findAll = <RES extends object>(col: Collection<RES>, filter: object, ...sorts: Sort[]): Promise<RES[]> => {
     const opt: FindOptions = {};
     if (sorts.length !== 0) opt.sort = sorts[0];
-    return parseCur(col.find<RES>(filter, opt));
+    return readAll(col.find<RES>(filter, opt));
 };
 
 export const findList = async <RES extends object>(
@@ -39,7 +39,7 @@ export const findList = async <RES extends object>(
     opt.skip = pager.page * pager.size;
     opt.limit = pager.size;
 
-    const list = await parseCur(col.find<RES>(filter, opt));
+    const list = await readAll(col.find<RES>(filter, opt));
     const total = await col.countDocuments(filter);
     return {
         ...pager,
@@ -48,7 +48,7 @@ export const findList = async <RES extends object>(
     };
 };
 
-async function parseCur<RES extends object>(cur: FindCursor<RES>): Promise<RES[]> {
+export const readAll = async <RES extends object>(cur: FindCursor<RES>): Promise<RES[]> => {
     const res: RES[] = [];
 
     while (await cur.hasNext()) {
@@ -69,4 +69,4 @@ async function parseCur<RES extends object>(cur: FindCursor<RES>): Promise<RES[]
     }
 
     return res;
-}
+};
