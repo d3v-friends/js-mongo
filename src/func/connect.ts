@@ -9,7 +9,7 @@ export interface ConnectArg {
     database: string;
 }
 
-const connect = async ({ host, username, password, database }: ConnectArg): Promise<Db> => {
+export const connect = async ({ host, username, password, database }: ConnectArg): Promise<Db> => {
     const client = new MongoClient(`mongodb://${host}`, {
         auth: {
             username,

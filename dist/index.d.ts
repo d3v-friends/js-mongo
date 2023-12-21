@@ -23,6 +23,7 @@ export declare const fnMongo: {
 	findAll: <RES_1 extends object>(col: import("mongodb").Collection<RES_1>, filter: object, ...sorts: import("mongodb").Sort[]) => Promise<RES_1[]>;
 	findList: <RES_2 extends object>(col: import("mongodb").Collection<RES_2>, filter: object, pager: Pager, ...sorts: import("mongodb").Sort[]) => Promise<ResultList<RES_2>>;
 	readAll: <RES_3 extends object>(cur: import("mongodb").FindCursor<RES_3>) => Promise<RES_3[]>;
+	connect: ({ host, username, password, database }: ConnectArg) => Promise<import("mongodb").Db>;
 	connectFactory: (v: ConnectArg) => () => Promise<import("mongodb").Db>;
 };
 export declare namespace QueryHelper {
