@@ -5,7 +5,7 @@ import { Docs } from "../type";
 
 const keyMigration = "migration";
 
-async function createCollection(db: Db, models: Docs<any>[]): Promise<void> {
+const createCollection = async (db: Db, models: Docs<any>[]): Promise<void> => {
     const cur = db.listCollections({}, { nameOnly: true });
     const ls: string[] = [];
     while (await cur.hasNext()) {
@@ -18,9 +18,9 @@ async function createCollection(db: Db, models: Docs<any>[]): Promise<void> {
         if (ls.includes(model.colNm)) continue;
         await db.createCollection(model.colNm);
     }
-}
+};
 
-export async function migrate(db: Db, ...models: Docs<any>[]): Promise<void> {
+export const migrate = async (db: Db, ...models: Docs<any>[]): Promise<void> => {
     const docKv = new DocKv(db);
     await createCollection(db, [docKv, ...models]);
 
@@ -48,4 +48,4 @@ export async function migrate(db: Db, ...models: Docs<any>[]): Promise<void> {
     }
 
     await docKv.set(keyMigration, false);
-}
+};

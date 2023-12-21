@@ -6,10 +6,10 @@ export type IdxArgs = {
     list: IdsElem[];
 };
 
-export async function reindexing(col: Collection<any>, { list }: IdxArgs): Promise<void> {
+export const reindex = async (col: Collection<any>, { list }: IdxArgs): Promise<void> => {
     await col.dropIndexes();
     for (let desc of list) {
         const [idx, opt] = desc;
         await col.createIndex(idx, opt);
     }
-}
+};

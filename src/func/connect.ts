@@ -2,14 +2,14 @@ import { Db, MongoClient } from "mongodb";
 
 type ConnFactory = () => Promise<Db>;
 
-export type ConnectArg = {
+export interface ConnectArg {
     host: string;
     username: string;
     password: string;
     database: string;
-};
+}
 
-export async function connect({ host, username, password, database }: ConnectArg): Promise<Db> {
+const connect = async ({ host, username, password, database }: ConnectArg): Promise<Db> => {
     const client = new MongoClient(`mongodb://${host}`, {
         auth: {
             username,
@@ -17,10 +17,10 @@ export async function connect({ host, username, password, database }: ConnectArg
         },
     });
     return client.db(database);
-}
+};
 
-export function connectFactory(v: ConnectArg): ConnFactory {
+export const connectFactory = (v: ConnectArg): ConnFactory => {
     return () => {
         return connect(v);
     };
-}
+};

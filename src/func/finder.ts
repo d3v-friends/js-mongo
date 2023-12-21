@@ -2,7 +2,7 @@ import { JsError } from "@js-pure";
 import type { Pager, ResultList } from "../type";
 import { Collection, FindCursor, FindOptions, Sort } from "mongodb";
 
-export async function findOne<RES extends object>(col: Collection<RES>, filter: object, ...sorts: Sort[]): Promise<RES> {
+export const findOne = async <RES extends object>(col: Collection<RES>, filter: object, ...sorts: Sort[]): Promise<RES> => {
     const opt: FindOptions = {};
     if (sorts.length !== 0) opt.sort = sorts[0];
     const res = await col.findOne<RES>(filter, opt);
@@ -20,20 +20,20 @@ export async function findOne<RES extends object>(col: Collection<RES>, filter: 
         );
     }
     return res;
-}
+};
 
-export async function findAll<RES extends object>(col: Collection<RES>, filter: object, ...sorts: Sort[]): Promise<RES[]> {
+export const findAll = <RES extends object>(col: Collection<RES>, filter: object, ...sorts: Sort[]): Promise<RES[]> => {
     const opt: FindOptions = {};
     if (sorts.length !== 0) opt.sort = sorts[0];
     return parseCur(col.find<RES>(filter, opt));
-}
+};
 
-export async function findList<RES extends object>(
+export const findList = async <RES extends object>(
     col: Collection<RES>,
     filter: object,
     pager: Pager,
     ...sorts: Sort[]
-): Promise<ResultList<RES>> {
+): Promise<ResultList<RES>> => {
     const opt: FindOptions = {};
     if (sorts.length !== 0) opt.sort = sorts[0];
     opt.skip = pager.page * pager.size;
@@ -46,7 +46,7 @@ export async function findList<RES extends object>(
         total,
         list,
     };
-}
+};
 
 async function parseCur<RES extends object>(cur: FindCursor<RES>): Promise<RES[]> {
     const res: RES[] = [];
