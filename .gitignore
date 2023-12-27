@@ -1,3 +1,6 @@
 /node_modules/
 /.idea/
 /.run/
+
+# env
+src/test/.env

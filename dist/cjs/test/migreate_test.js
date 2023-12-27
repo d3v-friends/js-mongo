@@ -36,33 +36,33 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.reindex = void 0;
-function reindex(col, _a) {
-    var list = _a.list;
-    return __awaiter(this, void 0, void 0, function () {
-        var _i, list_1, desc, idx, opt;
-        return __generator(this, function (_b) {
-            switch (_b.label) {
-                case 0: return [4 /*yield*/, col.dropIndexes()];
+var globals_1 = require("@jest/globals");
+var _js_pure_1 = require("@js-pure");
+var func_1 = require("../func");
+(0, globals_1.describe)("migrate", function () {
+    var conn;
+    (0, globals_1.beforeAll)(function () { return __awaiter(void 0, void 0, void 0, function () {
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, _js_pure_1.fnEnv.read(__dirname, ".env")];
                 case 1:
-                    _b.sent();
-                    _i = 0, list_1 = list;
-                    _b.label = 2;
+                    _a.sent();
+                    return [4 /*yield*/, func_1.fnMongo.connectByEnv()];
                 case 2:
-                    if (!(_i < list_1.length)) return [3 /*break*/, 5];
-                    desc = list_1[_i];
-                    idx = desc[0], opt = desc[1];
-                    return [4 /*yield*/, col.createIndex(idx, opt)];
-                case 3:
-                    _b.sent();
-                    _b.label = 4;
-                case 4:
-                    _i++;
-                    return [3 /*break*/, 2];
-                case 5: return [2 /*return*/];
+                    conn = _a.sent();
+                    return [2 /*return*/];
             }
         });
-    });
-}
-exports.reindex = reindex;
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicmVpbmRleC5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uLy4uL3NyYy9mdW5jL3JlaW5kZXgudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7O0FBR0EsU0FBc0IsT0FBTyxDQUFDLEdBQW9CLEVBQUUsRUFBaUI7UUFBZixJQUFJLFVBQUE7Ozs7O3dCQUN0RCxxQkFBTSxHQUFHLENBQUMsV0FBVyxFQUFFLEVBQUE7O29CQUF2QixTQUF1QixDQUFDOzBCQUNILEVBQUosYUFBSTs7O3lCQUFKLENBQUEsa0JBQUksQ0FBQTtvQkFBWixJQUFJO29CQUNGLEdBQUcsR0FBUyxJQUFJLEdBQWIsRUFBRSxHQUFHLEdBQUksSUFBSSxHQUFSLENBQVM7b0JBQ3hCLHFCQUFNLEdBQUcsQ0FBQyxXQUFXLENBQUMsR0FBRyxFQUFFLEdBQUcsQ0FBQyxFQUFBOztvQkFBL0IsU0FBK0IsQ0FBQzs7O29CQUZuQixJQUFJLENBQUE7Ozs7OztDQUl4QjtBQU5ELDBCQU1DIn0=
+    }); });
+    (0, globals_1.test)("migrate", function () { return __awaiter(void 0, void 0, void 0, function () {
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0: return [4 /*yield*/, func_1.fnMongo.migrate(conn)];
+                case 1:
+                    _a.sent();
+                    return [2 /*return*/];
+            }
+        });
+    }); });
+});
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoibWlncmVhdGVfdGVzdC5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uLy4uL3NyYy90ZXN0L21pZ3JlYXRlX3Rlc3QudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7QUFBQSx5Q0FBMEQ7QUFDMUQscUNBQWlDO0FBRWpDLGtDQUFvQztBQUVwQyxJQUFBLGtCQUFRLEVBQUMsU0FBUyxFQUFFO0lBQ2hCLElBQUksSUFBZ0IsQ0FBQztJQUVyQixJQUFBLG1CQUFTLEVBQUM7Ozt3QkFDTixxQkFBTSxnQkFBSyxDQUFDLElBQUksQ0FBQyxTQUFTLEVBQUUsTUFBTSxDQUFDLEVBQUE7O29CQUFuQyxTQUFtQyxDQUFDO29CQUM3QixxQkFBTSxjQUFPLENBQUMsWUFBWSxFQUFFLEVBQUE7O29CQUFuQyxJQUFJLEdBQUcsU0FBNEIsQ0FBQzs7OztTQUN2QyxDQUFDLENBQUM7SUFFSCxJQUFBLGNBQUksRUFBQyxTQUFTLEVBQUU7Ozt3QkFDWixxQkFBTSxjQUFPLENBQUMsT0FBTyxDQUFDLElBQUksQ0FBQyxFQUFBOztvQkFBM0IsU0FBMkIsQ0FBQzs7OztTQUMvQixDQUFDLENBQUM7QUFDUCxDQUFDLENBQUMsQ0FBQyJ9

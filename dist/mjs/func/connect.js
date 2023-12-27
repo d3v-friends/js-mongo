@@ -1,4 +1,3 @@
-"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
     return new (P || (P = Promise))(function (resolve, reject) {
@@ -35,18 +34,16 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.fnConn = void 0;
-var _js_pure_1 = require("@js-pure");
-var mongoose_1 = require("mongoose");
-exports.fnConn = {
+import { fnEnv } from "@js-pure";
+import { connect } from "mongoose";
+export var fnConn = {
     connect: function (_a) {
         var host = _a.host, username = _a.username, password = _a.password, database = _a.database;
         return __awaiter(void 0, void 0, void 0, function () {
             var client;
             return __generator(this, function (_b) {
                 switch (_b.label) {
-                    case 0: return [4 /*yield*/, (0, mongoose_1.connect)("mongodb://".concat(host), {
+                    case 0: return [4 /*yield*/, connect("mongodb://".concat(host), {
                             user: username,
                             pass: password,
                             dbName: database,
@@ -60,18 +57,18 @@ exports.fnConn = {
     },
     connectByEnv: function () { return __awaiter(void 0, void 0, void 0, function () {
         return __generator(this, function (_a) {
-            return [2 /*return*/, exports.fnConn.connect({
-                    host: _js_pure_1.fnEnv.string("MG_HOST"),
-                    username: _js_pure_1.fnEnv.string("MG_USERNAME"),
-                    password: _js_pure_1.fnEnv.string("MG_PASSWORD"),
-                    database: _js_pure_1.fnEnv.string("MG_DATABASE"),
+            return [2 /*return*/, fnConn.connect({
+                    host: fnEnv.string("MG_HOST"),
+                    username: fnEnv.string("MG_USERNAME"),
+                    password: fnEnv.string("MG_PASSWORD"),
+                    database: fnEnv.string("MG_DATABASE"),
                 })];
         });
     }); },
     connectionFactory: function (v) {
         return function () {
-            return exports.fnConn.connect(v);
+            return fnConn.connect(v);
         };
     },
 };
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiY29ubmVjdC5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uLy4uL3NyYy9mdW5jL2Nvbm5lY3QudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7O0FBQUEscUNBQWlDO0FBRWpDLHFDQUErQztBQUlsQyxRQUFBLE1BQU0sR0FBRztJQUNsQixPQUFPLEVBQUUsVUFBTyxFQUFrRDtZQUFoRCxJQUFJLFVBQUEsRUFBRSxRQUFRLGNBQUEsRUFBRSxRQUFRLGNBQUEsRUFBRSxRQUFRLGNBQUE7Ozs7OzRCQUNqQyxxQkFBTSxJQUFBLGtCQUFPLEVBQUMsb0JBQWEsSUFBSSxDQUFFLEVBQUU7NEJBQzlDLElBQUksRUFBRSxRQUFROzRCQUNkLElBQUksRUFBRSxRQUFROzRCQUNkLE1BQU0sRUFBRSxRQUFRO3lCQUNuQixDQUFDLEVBQUE7O3dCQUpJLE1BQU0sR0FBRyxTQUliO3dCQUNGLHNCQUFPLE1BQU0sQ0FBQyxVQUFVLEVBQUM7Ozs7S0FFNUI7SUFDRCxZQUFZLEVBQUU7O1lBQ1Ysc0JBQU8sY0FBTSxDQUFDLE9BQU8sQ0FBQztvQkFDbEIsSUFBSSxFQUFFLGdCQUFLLENBQUMsTUFBTSxDQUFDLFNBQVMsQ0FBQztvQkFDN0IsUUFBUSxFQUFFLGdCQUFLLENBQUMsTUFBTSxDQUFDLGFBQWEsQ0FBQztvQkFDckMsUUFBUSxFQUFFLGdCQUFLLENBQUMsTUFBTSxDQUFDLGFBQWEsQ0FBQztvQkFDckMsUUFBUSxFQUFFLGdCQUFLLENBQUMsTUFBTSxDQUFDLGFBQWEsQ0FBQztpQkFDeEMsQ0FBQyxFQUFDOztTQUNOO0lBQ0QsaUJBQWlCLEVBQUUsVUFBQyxDQUFhO1FBQzdCLE9BQU87WUFDSCxPQUFPLGNBQU0sQ0FBQyxPQUFPLENBQUMsQ0FBQyxDQUFDLENBQUM7UUFDN0IsQ0FBQyxDQUFDO0lBQ04sQ0FBQztDQUNKLENBQUMifQ==
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiY29ubmVjdC5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uLy4uL3NyYy9mdW5jL2Nvbm5lY3QudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7O0FBQUEsT0FBTyxFQUFFLEtBQUssRUFBRSxNQUFNLFVBQVUsQ0FBQztBQUVqQyxPQUFPLEVBQUUsT0FBTyxFQUFjLE1BQU0sVUFBVSxDQUFDO0FBSS9DLE1BQU0sQ0FBQyxJQUFNLE1BQU0sR0FBRztJQUNsQixPQUFPLEVBQUUsVUFBTyxFQUFrRDtZQUFoRCxJQUFJLFVBQUEsRUFBRSxRQUFRLGNBQUEsRUFBRSxRQUFRLGNBQUEsRUFBRSxRQUFRLGNBQUE7Ozs7OzRCQUNqQyxxQkFBTSxPQUFPLENBQUMsb0JBQWEsSUFBSSxDQUFFLEVBQUU7NEJBQzlDLElBQUksRUFBRSxRQUFROzRCQUNkLElBQUksRUFBRSxRQUFROzRCQUNkLE1BQU0sRUFBRSxRQUFRO3lCQUNuQixDQUFDLEVBQUE7O3dCQUpJLE1BQU0sR0FBRyxTQUliO3dCQUNGLHNCQUFPLE1BQU0sQ0FBQyxVQUFVLEVBQUM7Ozs7S0FFNUI7SUFDRCxZQUFZLEVBQUU7O1lBQ1Ysc0JBQU8sTUFBTSxDQUFDLE9BQU8sQ0FBQztvQkFDbEIsSUFBSSxFQUFFLEtBQUssQ0FBQyxNQUFNLENBQUMsU0FBUyxDQUFDO29CQUM3QixRQUFRLEVBQUUsS0FBSyxDQUFDLE1BQU0sQ0FBQyxhQUFhLENBQUM7b0JBQ3JDLFFBQVEsRUFBRSxLQUFLLENBQUMsTUFBTSxDQUFDLGFBQWEsQ0FBQztvQkFDckMsUUFBUSxFQUFFLEtBQUssQ0FBQyxNQUFNLENBQUMsYUFBYSxDQUFDO2lCQUN4QyxDQUFDLEVBQUM7O1NBQ047SUFDRCxpQkFBaUIsRUFBRSxVQUFDLENBQWE7UUFDN0IsT0FBTztZQUNILE9BQU8sTUFBTSxDQUFDLE9BQU8sQ0FBQyxDQUFDLENBQUMsQ0FBQztRQUM3QixDQUFDLENBQUM7SUFDTixDQUFDO0NBQ0osQ0FBQyJ9

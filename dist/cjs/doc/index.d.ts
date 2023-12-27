@@ -1,1 +1,1 @@
-export * from "./kv";
+export { KvManager } from "./kv";

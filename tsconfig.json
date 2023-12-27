@@ -21,11 +21,15 @@
     "noUnusedParameters": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
-    // out
-    "inlineSourceMap": true,
+    // path
     "declaration": true,
+    "inlineSourceMap": true,
     "rootDir": "./src",
-    "baseUrl": "."
+    "paths": {
+      "@src/*": [
+        "./src/*"
+      ]
+    }
   },
   "ts-node": {
     "compilerOptions": {
@@ -33,11 +37,12 @@
     }
   },
   "include": [
-    "./src"
+    "src"
   ],
   "exclude": [
     "node_modules",
     "dist",
-    "etc"
+    "etc",
+    "config"
   ]
 }

@@ -1,68 +1,70 @@
 import { fnParam, JsError } from "@js-pure";
-import { Db, ObjectId } from "mongodb";
-import { Manager, FnMigrate, Kv } from "../type";
+import { Schema, Connection } from "mongoose";
+import { Manager } from "@src/type";
+
+interface Kv {
+    key: string;
+    value: string;
+}
 
 export class KvManager extends Manager<Kv> {
     public readonly colNm: string;
-    public readonly migrate: FnMigrate<Kv>[];
+    public readonly schema = new Schema<Kv>(
+        {
+            key: {
+                type: String,
+                unique: true,
+                required: true,
+            },
+            value: {
+                type: String,
+                required: true,
+            },
+        },
+        {
+            timestamps: true,
+        },
+    );
+    public readonly migrate = [];
 
     constructor(...colNms: string[]) {
         super();
         this.colNm = fnParam.string(colNms, "kvs");
-        this.migrate = [
-            async col => {
-                await col.createIndex(
-                    {
-                        key: 1,
-                    },
-                    {
-                        unique: true,
-                    },
-                );
-            },
-        ];
     }
 
-    public async get<Input>(db: Db, key: string, ...defaults: Input[]): Promise<Input> {
-        const col = this.getCol(db);
-        const res = await col.findOne({ key });
-        if (!res) {
-            if (defaults.length === 0) {
-                throw new JsError(
-                    "not found value",
-                    { key },
-                    {
-                        ko: "내부서버오류",
-                    });
-            }
-
-            const value = JSON.stringify(defaults[0]);
-
-            await col.insertOne({
-                _id: new ObjectId(),
-                key,
-                value,
-                updatedAt: new Date(),
-            });
-
-            return defaults[0];
+    public async get<T>(conn: Connection, key: string, ...defs: T[]): Promise<T> {
+        const model = conn.model(this.colNm, this.schema);
+        const res = await model.findOne({ key });
+        if (res) {
+            return JSON.parse(res.value);
         }
 
+        if (defs.length === 0) {
+            throw new JsError("no has data", { key }, {
+                ko: "서버에러. 다시 시도하여 주십시오.",
+            });
+        }
 
-        return JSON.parse(res.value);
+        const def = defs[0];
+        await model.create({
+            key,
+            value: JSON.stringify(def),
+        });
+        return def;
     }
 
-    public async set<Input>(db: Db, key: string, value: Input) {
-        const col = this.getCol(db);
-        await col.updateOne(
+    public async set<T>(conn: Connection, key: string, value: T): Promise<void> {
+        await this.model(conn).updateOne(
             {
                 key,
             },
             {
                 $set: {
                     value: JSON.stringify(value),
-                    updatedAt: new Date(),
                 },
+            },
+            {
+                upsert: true,
             });
     }
 }

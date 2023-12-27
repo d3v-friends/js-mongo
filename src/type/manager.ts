@@ -1,12 +1,12 @@
-import { Collection, Db, Document } from "mongodb";
+import { Connection, Schema } from "mongoose";
 import { FnMigrate } from "./type";
 
+export abstract class Manager<T> {
+    public abstract readonly schema: Schema<T>;
+    public abstract readonly colNm: string;
+    public abstract readonly migrate: FnMigrate<T>[];
 
-export abstract class Manager<DATA extends Document = Document> {
-    public readonly abstract colNm: string;
-    public readonly abstract migrate: FnMigrate<DATA>[];
-
-    protected getCol(db: Db): Collection<DATA> {
-        return db.collection<DATA>(this.colNm);
+    public model(conn: Connection) {
+        return conn.model(this.colNm, this.schema);
     }
 }

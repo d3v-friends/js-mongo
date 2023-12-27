@@ -1,3 +1,3 @@
-export { fnMongo } from "./func";
-export * from "./type";
-export * from "./doc";
+export { fnMongo } from "@src/func";
+export * from "@src/type";
+export * from "@src/doc";

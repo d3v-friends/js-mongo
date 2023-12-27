@@ -1,5 +1,6 @@
+CJS="./config/tsconfig.cjs.json"
+MJS="./config/tsconfig.mjs.json"
 rm -rf ./dist
-mkdir -p ./dist/cjs
-
-tsc -p ./config/tsconfig.cjs.json
+tsc -p "$CJS" && tsc-alias -p "$CJS"
+tsc -p "$MJS" && tsc-alias -p "$MJS"
 git add ./dist --all
