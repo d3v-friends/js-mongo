@@ -1,11 +1,5 @@
 import { Db, MongoClient } from "mongodb";
-
-export type ConnectArg = {
-    host: string;
-    username: string;
-    password: string;
-    database: string;
-};
+import { ConnectArg } from "../type";
 
 type ConnFactory = () => Promise<Db>;
 

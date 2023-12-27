@@ -2,7 +2,6 @@ import { fnParam, JsError } from "@js-pure";
 import { Db, ObjectId } from "mongodb";
 import { Manager, FnMigrate, Kv } from "../type";
 
-
 export class KvManager extends Manager<Kv> {
     public readonly colNm: string;
     public readonly migrate: FnMigrate<Kv>[];

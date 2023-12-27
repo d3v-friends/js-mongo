@@ -4,10 +4,10 @@ import { Collection, CreateIndexesOptions, Db, Document, IndexSpecification, Obj
 
 declare function migrate(db: Db, ...models: Manager[]): Promise<void>;
 declare function reindex(col: Collection<any>, { list }: IdxArgs): Promise<void>;
-export declare abstract class Manager<Doc extends object = Document> {
+export declare abstract class Manager<DOC extends Document = Document> {
 	abstract readonly colNm: string;
-	abstract readonly migrate: FnMigrate<Doc>[];
-	protected getCol(db: Db): Collection<Doc>;
+	abstract readonly migrate: FnMigrate<DOC>[];
+	protected getCol(db: Db): Collection<DOC>;
 }
 export declare class KvManager extends Manager<Kv> {
 	readonly colNm: string;

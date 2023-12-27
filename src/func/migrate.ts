@@ -3,7 +3,6 @@ import { Db } from "mongodb";
 import { KvManager } from "../doc";
 import { Manager } from "../type";
 
-
 const keyMigration = "migration";
 
 async function createCollection(db: Db, models: Manager<any>[]): Promise<void> {
