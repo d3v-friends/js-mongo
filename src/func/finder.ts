@@ -1,11 +1,11 @@
 import { JsError } from "@js-pure";
 import type { Pager, ResultList } from "../type";
-import { Collection, FindCursor, FindOptions, Sort } from "mongodb";
+import { Collection, Document, FindCursor, FindOptions, Sort } from "mongodb";
 
-async function findOne<RES extends object>(col: Collection<RES>, filter: object, ...sorts: Sort[]): Promise<RES> {
+async function findOne<DATA extends Document = Document>(col: Collection<DATA>, filter: object, ...sorts: Sort[]): Promise<DATA> {
     const opt: FindOptions = {};
     if (sorts.length !== 0) opt.sort = sorts[0];
-    const res = await col.findOne<RES>(filter, opt);
+    const res = await col.findOne<DATA>(filter, opt);
     if (!res) {
         throw new JsError(
             "not found model",
@@ -22,24 +22,24 @@ async function findOne<RES extends object>(col: Collection<RES>, filter: object,
     return res;
 }
 
-async function findAll<RES extends object>(col: Collection<RES>, filter: object, ...sorts: Sort[]): Promise<RES[]> {
+async function findAll<DATA extends Document = Document>(col: Collection<DATA>, filter: object, ...sorts: Sort[]): Promise<DATA[]> {
     const opt: FindOptions = {};
     if (sorts.length !== 0) opt.sort = sorts[0];
-    return parseCur(col.find<RES>(filter, opt));
+    return parseCur(col.find<DATA>(filter, opt));
 }
 
-async function findList<RES extends object>(
-    col: Collection<RES>,
+async function findList<DATA extends Document = Document>(
+    col: Collection<DATA>,
     filter: object,
     pager: Pager,
     ...sorts: Sort[]
-): Promise<ResultList<RES>> {
+): Promise<ResultList<DATA>> {
     const opt: FindOptions = {};
     if (sorts.length !== 0) opt.sort = sorts[0];
     opt.skip = pager.page * pager.size;
     opt.limit = pager.size;
 
-    const list = await parseCur(col.find<RES>(filter, opt));
+    const list = await parseCur(col.find<DATA>(filter, opt));
     const total = await col.countDocuments(filter);
     return {
         ...pager,
@@ -48,8 +48,8 @@ async function findList<RES extends object>(
     };
 }
 
-async function parseCur<RES extends object>(cur: FindCursor<RES>): Promise<RES[]> {
-    const res: RES[] = [];
+async function parseCur<DATA extends Document = Document>(cur: FindCursor<DATA>): Promise<DATA[]> {
+    const res: DATA[] = [];
 
     while (await cur.hasNext()) {
         const doc = await cur.next();

@@ -2,11 +2,11 @@ import { Collection, Db, Document } from "mongodb";
 import { FnMigrate } from "./type";
 
 
-export abstract class Manager<DOC extends Document = Document> {
+export abstract class Manager<DATA extends Document = Document> {
     public readonly abstract colNm: string;
-    public readonly abstract migrate: FnMigrate<DOC>[];
+    public readonly abstract migrate: FnMigrate<DATA>[];
 
-    protected getCol(db: Db): Collection<DOC> {
-        return db.collection<DOC>(this.colNm);
+    protected getCol(db: Db): Collection<DATA> {
+        return db.collection<DATA>(this.colNm);
     }
 }

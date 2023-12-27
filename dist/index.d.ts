@@ -4,10 +4,10 @@ import { Collection, CreateIndexesOptions, Db, Document, IndexSpecification, Obj
 
 declare function migrate(db: Db, ...models: Manager[]): Promise<void>;
 declare function reindex(col: Collection<any>, { list }: IdxArgs): Promise<void>;
-export declare abstract class Manager<DOC extends Document = Document> {
+export declare abstract class Manager<DATA extends Document = Document> {
 	abstract readonly colNm: string;
-	abstract readonly migrate: FnMigrate<DOC>[];
-	protected getCol(db: Db): Collection<DOC>;
+	abstract readonly migrate: FnMigrate<DATA>[];
+	protected getCol(db: Db): Collection<DATA>;
 }
 export declare class KvManager extends Manager<Kv> {
 	readonly colNm: string;
@@ -19,9 +19,9 @@ export declare class KvManager extends Manager<Kv> {
 export declare const fnMongo: {
 	reindex: typeof reindex;
 	migrate: typeof migrate;
-	one: <RES extends object>(col: import("mongodb").Collection<RES>, filter: object, ...sorts: import("mongodb").Sort[]) => Promise<RES>;
-	all: <RES_1 extends object>(col: import("mongodb").Collection<RES_1>, filter: object, ...sorts: import("mongodb").Sort[]) => Promise<RES_1[]>;
-	list: <RES_2 extends object>(col: import("mongodb").Collection<RES_2>, filter: object, pager: Pager, ...sorts: import("mongodb").Sort[]) => Promise<ResultList<RES_2>>;
+	one: <DATA extends import("mongodb").Document = import("mongodb").Document>(col: import("mongodb").Collection<DATA>, filter: object, ...sorts: import("mongodb").Sort[]) => Promise<DATA>;
+	all: <DATA_1 extends import("mongodb").Document = import("mongodb").Document>(col: import("mongodb").Collection<DATA_1>, filter: object, ...sorts: import("mongodb").Sort[]) => Promise<DATA_1[]>;
+	list: <DATA_2 extends import("mongodb").Document = import("mongodb").Document>(col: import("mongodb").Collection<DATA_2>, filter: object, pager: Pager, ...sorts: import("mongodb").Sort[]) => Promise<ResultList<DATA_2>>;
 	connect: ({ host, username, password, database }: ConnectArg) => Promise<import("mongodb").Db>;
 	connectionFactory: (v: ConnectArg) => () => Promise<import("mongodb").Db>;
 };
