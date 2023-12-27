@@ -25,19 +25,28 @@ export declare const fnMongo: {
 	connect: ({ host, username, password, database }: ConnectArg) => Promise<import("mongodb").Db>;
 	connectionFactory: (v: ConnectArg) => () => Promise<import("mongodb").Db>;
 };
+export interface ConnectArg {
+	host: string;
+	username: string;
+	password: string;
+	database: string;
+}
+export interface IdxArgs {
+	list: IdsElem[];
+}
 export interface Kv {
 	_id: ObjectId;
 	key: string;
 	value: string;
 	updatedAt: Date;
 }
+export interface ResultList<DATA extends Document = Document> {
+	page: number;
+	size: number;
+	total: number;
+	list: DATA[];
+}
 export type Bool = "true" | "false";
-export type ConnectArg = {
-	host: string;
-	username: string;
-	password: string;
-	database: string;
-};
 export type DateQuery = Partial<{
 	$lt: Date;
 	$lte: Date;
@@ -50,18 +59,9 @@ export type IdsElem = [
 	IndexSpecification,
 	CreateIndexesOptions
 ];
-export type IdxArgs = {
-	list: IdsElem[];
-};
 export type Pager = {
 	page: number;
 	size: number;
-};
-export type ResultList<DATA extends Document = Document> = {
-	page: number;
-	size: number;
-	total: number;
-	list: DATA[];
 };
 
 export {};

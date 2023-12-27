@@ -5,12 +5,12 @@ export type Pager = {
     size: number;
 };
 
-export type ResultList<DATA extends Document = Document> = {
+export interface ResultList<DATA extends Document = Document> {
     page: number;
     size: number;
     total: number;
     list: DATA[];
-};
+}
 
 export type DateQuery = Partial<{
     $lt: Date;
@@ -33,11 +33,11 @@ export interface Kv {
 
 export type IdsElem = [IndexSpecification, CreateIndexesOptions];
 
-export type IdxArgs = {
+export interface IdxArgs {
     list: IdsElem[],
 }
 
-export type ConnectArg = {
+export interface ConnectArg {
     host: string;
     username: string;
     password: string;
