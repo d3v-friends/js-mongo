@@ -1,9 +1,8 @@
 import { JsError } from "@js-pure";
-import { Pager, ResultList } from "@src/type";
-import { Model } from "mongoose";
+import { Pager, ResultList, MongooseModel } from "@src/type";
 
 export const fnFinder = {
-    findOne: async <T>(model: Model<T>, filter: object, sort: object): Promise<T> => {
+    findOne: async <T>(model: MongooseModel<T>, filter: object, sort: object): Promise<T> => {
         const res = await model.findOne(filter, {}, {
             sort,
         });
@@ -16,18 +15,18 @@ export const fnFinder = {
             });
         }
 
-        return res;
+        return res as T;
     },
-    findAll: async <T>(model: Model<T>, filter: object, sort: object): Promise<T[]> => {
+    findAll: async <T>(model: MongooseModel<T>, filter: object, sort: object): Promise<T[]> => {
         return model.find(filter, {}, { sort });
     },
-    findList: async <T>(model: Model<T>, filter: object, p: Pager, sort: object): Promise<ResultList<T>> => {
+    findList: async <T>(model: MongooseModel<T>, filter: object, p: Pager, sort: object): Promise<ResultList<T>> => {
         const total = await model.countDocuments(filter);
         const list = await model.find(filter, {}, {
             skip: p.size * p.page,
             limit: p.size,
             sort,
-        });
+        }) as T[];
         return {
             ...p,
             total,
