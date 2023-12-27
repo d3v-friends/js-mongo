@@ -1,22 +1,14 @@
 import { fnParam, JsError } from "@js-pure";
 import { Db, ObjectId } from "mongodb";
-import { Manager, FnMigrate } from "../type";
+import { Manager, FnMigrate, Kv } from "../type";
 
-export interface Kv {
-    _id: ObjectId;
-    key: string;
-    value: string;
-    updatedAt: Date;
-}
 
-export class MngKv extends Manager<Kv> {
+export class KvManager extends Manager<Kv> {
     public readonly colNm: string;
     public readonly migrate: FnMigrate<Kv>[];
-    public readonly db: Db;
 
-    constructor(db: Db, ...colNms: string[]) {
+    constructor(...colNms: string[]) {
         super();
-        this.db = db;
         this.colNm = fnParam.string(colNms, "kvs");
         this.migrate = [
             async col => {
@@ -32,8 +24,8 @@ export class MngKv extends Manager<Kv> {
         ];
     }
 
-    public async get<Input>(key: string, ...defaults: Input[]): Promise<Input> {
-        const col = this.getCol();
+    public async get<Input>(db: Db, key: string, ...defaults: Input[]): Promise<Input> {
+        const col = this.getCol(db);
         const res = await col.findOne({ key });
         if (!res) {
             if (defaults.length === 0) {
@@ -57,11 +49,12 @@ export class MngKv extends Manager<Kv> {
             return defaults[0];
         }
 
-        throw new Error("not impl");
+
+        return JSON.parse(res.value);
     }
 
-    public async set<Input>(key: string, value: Input) {
-        const col = this.getCol();
+    public async set<Input>(db: Db, key: string, value: Input) {
+        const col = this.getCol(db);
         await col.updateOne(
             {
                 key,

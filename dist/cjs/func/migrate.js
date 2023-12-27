@@ -98,11 +98,11 @@ function migrate(db) {
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
-                    docKv = new doc_1.MngKv(db);
+                    docKv = new doc_1.KvManager();
                     return [4 /*yield*/, createCollection(db, __spreadArray([docKv], models, true))];
                 case 1:
                     _b.sent();
-                    return [4 /*yield*/, docKv.get(keyMigration, false)];
+                    return [4 /*yield*/, docKv.get(db, keyMigration, false)];
                 case 2:
                     isMig = _b.sent();
                     if (isMig) {
@@ -110,7 +110,7 @@ function migrate(db) {
                             ko: "마이그레이션이 이미 실행중입니다.",
                         });
                     }
-                    return [4 /*yield*/, docKv.set(keyMigration, true)];
+                    return [4 /*yield*/, docKv.set(db, keyMigration, true)];
                 case 3:
                     _b.sent();
                     _a = 0, models_2 = models;
@@ -119,7 +119,7 @@ function migrate(db) {
                     if (!(_a < models_2.length)) return [3 /*break*/, 11];
                     model = models_2[_a];
                     key = "mig_".concat(model.colNm);
-                    return [4 /*yield*/, docKv.get(key, 0)];
+                    return [4 /*yield*/, docKv.get(db, key, 0)];
                 case 5:
                     idx = _b.sent();
                     i = idx;
@@ -130,7 +130,7 @@ function migrate(db) {
                     return [4 /*yield*/, fn(db.collection(model.colNm))];
                 case 7:
                     _b.sent();
-                    return [4 /*yield*/, docKv.set(key, i + 1)];
+                    return [4 /*yield*/, docKv.set(db, key, i + 1)];
                 case 8:
                     _b.sent();
                     _b.label = 9;
@@ -140,7 +140,7 @@ function migrate(db) {
                 case 10:
                     _a++;
                     return [3 /*break*/, 4];
-                case 11: return [4 /*yield*/, docKv.set(keyMigration, false)];
+                case 11: return [4 /*yield*/, docKv.set(db, keyMigration, false)];
                 case 12:
                     _b.sent();
                     return [2 /*return*/];

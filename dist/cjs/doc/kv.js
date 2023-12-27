@@ -51,19 +51,18 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.MngKv = void 0;
+exports.KvManager = void 0;
 var _js_pure_1 = require("@js-pure");
 var mongodb_1 = require("mongodb");
 var type_1 = require("../type");
-var MngKv = /** @class */ (function (_super) {
-    __extends(MngKv, _super);
-    function MngKv(db) {
+var KvManager = /** @class */ (function (_super) {
+    __extends(KvManager, _super);
+    function KvManager() {
         var colNms = [];
-        for (var _i = 1; _i < arguments.length; _i++) {
-            colNms[_i - 1] = arguments[_i];
+        for (var _i = 0; _i < arguments.length; _i++) {
+            colNms[_i] = arguments[_i];
         }
         var _this = _super.call(this) || this;
-        _this.db = db;
         _this.colNm = _js_pure_1.fnParam.string(colNms, "kvs");
         _this.migrate = [
             function (col) { return __awaiter(_this, void 0, void 0, function () {
@@ -83,17 +82,17 @@ var MngKv = /** @class */ (function (_super) {
         ];
         return _this;
     }
-    MngKv.prototype.get = function (key) {
+    KvManager.prototype.get = function (db, key) {
         var defaults = [];
-        for (var _i = 1; _i < arguments.length; _i++) {
-            defaults[_i - 1] = arguments[_i];
+        for (var _i = 2; _i < arguments.length; _i++) {
+            defaults[_i - 2] = arguments[_i];
         }
         return __awaiter(this, void 0, void 0, function () {
             var col, res, value;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        col = this.getCol();
+                        col = this.getCol(db);
                         return [4 /*yield*/, col.findOne({ key: key })];
                     case 1:
                         res = _a.sent();
@@ -113,18 +112,18 @@ var MngKv = /** @class */ (function (_super) {
                     case 2:
                         _a.sent();
                         return [2 /*return*/, defaults[0]];
-                    case 3: throw new Error("not impl");
+                    case 3: return [2 /*return*/, JSON.parse(res.value)];
                 }
             });
         });
     };
-    MngKv.prototype.set = function (key, value) {
+    KvManager.prototype.set = function (db, key, value) {
         return __awaiter(this, void 0, void 0, function () {
             var col;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        col = this.getCol();
+                        col = this.getCol(db);
                         return [4 /*yield*/, col.updateOne({
                                 key: key,
                             }, {
@@ -140,6 +139,6 @@ var MngKv = /** @class */ (function (_super) {
             });
         });
     };
-    return MngKv;
+    return KvManager;
 }(type_1.Manager));
-exports.MngKv = MngKv;
+exports.KvManager = KvManager;

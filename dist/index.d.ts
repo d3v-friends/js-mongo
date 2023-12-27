@@ -7,16 +7,14 @@ declare function reindex(col: Collection<any>, { list }: IdxArgs): Promise<void>
 export declare abstract class Manager<Doc extends object = Document> {
 	abstract readonly colNm: string;
 	abstract readonly migrate: FnMigrate<Doc>[];
-	abstract readonly db: Db;
-	protected getCol(): Collection<Doc>;
+	protected getCol(db: Db): Collection<Doc>;
 }
-export declare class MngKv extends Manager<Kv> {
+export declare class KvManager extends Manager<Kv> {
 	readonly colNm: string;
 	readonly migrate: FnMigrate<Kv>[];
-	readonly db: Db;
-	constructor(db: Db, ...colNms: string[]);
-	get<Input>(key: string, ...defaults: Input[]): Promise<Input>;
-	set<Input>(key: string, value: Input): Promise<void>;
+	constructor(...colNms: string[]);
+	get<Input>(db: Db, key: string, ...defaults: Input[]): Promise<Input>;
+	set<Input>(db: Db, key: string, value: Input): Promise<void>;
 }
 export declare const fnMongo: {
 	reindex: typeof reindex;

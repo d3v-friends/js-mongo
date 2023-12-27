@@ -1,4 +1,4 @@
-import { Collection, Document } from "mongodb";
+import { Collection, Document, ObjectId } from "mongodb";
 
 export type Pager = {
     page: number;
@@ -23,3 +23,11 @@ export type DateQuery = Partial<{
 export type FnMigrate<DATA extends object = Document> = (col: Collection<DATA>) => Promise<void>;
 
 export type Bool = "true" | "false";
+
+
+export interface Kv {
+    _id: ObjectId;
+    key: string;
+    value: string;
+    updatedAt: Date;
+}

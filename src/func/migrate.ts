@@ -1,6 +1,6 @@
 import { JsError } from "@js-pure";
 import { Db } from "mongodb";
-import { MngKv } from "../doc";
+import { KvManager } from "../doc";
 import { Manager } from "../type";
 
 
@@ -22,27 +22,27 @@ async function createCollection(db: Db, models: Manager<any>[]): Promise<void> {
 }
 
 export async function migrate(db: Db, ...models: Manager[]): Promise<void> {
-    const docKv = new MngKv(db);
+    const docKv = new KvManager();
     await createCollection(db, [docKv, ...models]);
 
-    const isMig = await docKv.get(keyMigration, false);
+    const isMig = await docKv.get(db, keyMigration, false);
     if (isMig) {
         throw new JsError("in processing migration", {}, {
             ko: "마이그레이션이 이미 실행중입니다.",
         });
     }
 
-    await docKv.set(keyMigration, true);
+    await docKv.set(db, keyMigration, true);
 
     for (const model of models) {
         const key = `mig_${model.colNm}`;
-        const idx = await docKv.get(key, 0);
+        const idx = await docKv.get(db, key, 0);
         for (let i = idx; i < model.migrate.length; i++) {
             const fn = model.migrate[i];
             await fn(db.collection(model.colNm));
-            await docKv.set(key, i + 1);
+            await docKv.set(db, key, i + 1);
         }
     }
 
-    await docKv.set(keyMigration, false);
+    await docKv.set(db, keyMigration, false);
 }

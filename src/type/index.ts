@@ -1,2 +1,2 @@
-export * from "./manager";
-export * from "./type";
+export { Manager } from "./manager";
+export type * from "./type";
