@@ -6,7 +6,7 @@ import { Manager } from "../type";
 const keyMigration = "migration";
 
 async function createCollection(db: Db, models: Manager<any>[]): Promise<void> {
-    const cur = db.listCollections({}, { nameOnly: true });
+    const cur = db.listCollections({}, {});
     const ls: string[] = [];
     while (await cur.hasNext()) {
         const col = await cur.next();

@@ -19,9 +19,6 @@ devDependencies:
   '@types/node':
     specifier: 20.10.4
     version: 20.10.4
-  dts-bundle-generator:
-    specifier: 9.0.0
-    version: 9.0.0
   jest:
     specifier: 29.7.0
     version: 29.7.0(@types/node@20.10.4)(ts-node@10.9.2)
@@ -1121,15 +1118,6 @@ packages:
   /diff@4.0.2:
     resolution: {integrity: sha512-58lmxKSA4BNyLz+HHMUzlOEpg09FV+ev6ZMe3vJihgdxzgcwZ8VoEEPmALCZG9LmqfVoNMMKpttIYTVG6uDY7A==}
     engines: {node: '>=0.3.1'}
-    dev: true
-
-  /dts-bundle-generator@9.0.0:
-    resolution: {integrity: sha512-4XPDOb+F1fkPrvqFL4hnNW2Edc3uiFxQDsK8gUMP8/45+QkA+dSOH0ZWZCKXEjA3ITVbPGV1li8oP8JE4Z/Y0g==}
-    engines: {node: '>=14.0.0'}
-    hasBin: true
-    dependencies:
-      typescript: 5.3.3
-      yargs: 17.7.2
     dev: true
 
   /electron-to-chromium@1.4.616:
