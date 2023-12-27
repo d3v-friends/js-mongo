@@ -20,15 +20,12 @@
     "tsc-alias": "1.8.8",
     "typescript": "5.3.3"
   },
-  "main": "dist/cjs/index.js",
-  "types": "dist/cjs/index.d.ts",
-  "type": "commonjs",
   "exports": {
     ".": {
       "require": "./dist/cjs/index.js",
       "import": "./dist/mjs/index.js",
       "types": "./src/index.ts",
-      "default": "./src/index.ts"
+      "default": "./dist/cjs/index.js"
     }
   },
   "engines": {
