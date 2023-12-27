@@ -27,7 +27,7 @@
       "require": "./dist/cjs/index.js",
       "import": "./dist/mjs/index.js",
       "types": "./src/index.ts",
-      "node": "./src/index.ts"
+      "node": "./dist/index.js"
     }
   },
   "engines": {
