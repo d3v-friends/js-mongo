@@ -5,11 +5,11 @@ export type Pager = {
     size: number;
 };
 
-export type ResultList<RES extends object> = {
+export type ResultList<DATA extends Document = Document> = {
     page: number;
     size: number;
     total: number;
-    list: RES[];
+    list: DATA[];
 };
 
 export type DateQuery = Partial<{
@@ -20,7 +20,7 @@ export type DateQuery = Partial<{
     $gte: Date;
 }>;
 
-export type FnMigrate<DATA extends object = Document> = (col: Collection<DATA>) => Promise<void>;
+export type FnMigrate<DATA extends Document = Document> = (col: Collection<DATA>) => Promise<void>;
 
 export type Bool = "true" | "false";
 

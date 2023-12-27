@@ -45,7 +45,7 @@ export type DateQuery = Partial<{
 	$gt: Date;
 	$gte: Date;
 }>;
-export type FnMigrate<DATA extends object = Document> = (col: Collection<DATA>) => Promise<void>;
+export type FnMigrate<DATA extends Document = Document> = (col: Collection<DATA>) => Promise<void>;
 export type IdsElem = [
 	IndexSpecification,
 	CreateIndexesOptions
@@ -57,11 +57,11 @@ export type Pager = {
 	page: number;
 	size: number;
 };
-export type ResultList<RES extends object> = {
+export type ResultList<DATA extends Document = Document> = {
 	page: number;
 	size: number;
 	total: number;
-	list: RES[];
+	list: DATA[];
 };
 
 export {};
