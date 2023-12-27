@@ -14,5 +14,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.fnMongo = void 0;
 var connect_1 = require("./connect");
 var migrate_1 = require("./migrate");
-exports.fnMongo = __assign(__assign({}, connect_1.fnConn), { migrate: migrate_1.migrate });
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi8uLi8uLi9zcmMvZnVuYy9pbmRleC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7Ozs7Ozs7Ozs7OztBQUFBLHFDQUFtQztBQUNuQyxxQ0FBb0M7QUFFdkIsUUFBQSxPQUFPLHlCQUNiLGdCQUFNLEtBQ1QsT0FBTyxtQkFBQSxJQUNUIn0=
+var finder_1 = require("./finder");
+exports.fnMongo = __assign(__assign(__assign({}, connect_1.fnConn), finder_1.fnFinder), { migrate: migrate_1.migrate });
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi8uLi8uLi9zcmMvZnVuYy9pbmRleC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOzs7Ozs7Ozs7Ozs7OztBQUFBLHFDQUFtQztBQUNuQyxxQ0FBb0M7QUFDcEMsbUNBQW9DO0FBRXZCLFFBQUEsT0FBTyxrQ0FDYixnQkFBTSxHQUNOLGlCQUFRLEtBQ1gsT0FBTyxtQkFBQSxJQUNUIn0=

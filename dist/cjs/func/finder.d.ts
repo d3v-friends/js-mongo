@@ -21,15 +21,11 @@
 /// <reference types="mongoose/types/utility" />
 /// <reference types="mongoose/types/validation" />
 /// <reference types="mongoose/types/virtuals" />
-/// <reference types="mongoose" />
 /// <reference types="mongoose/types/inferschematype" />
-import { migrate } from "./migrate";
-export declare const fnMongo: {
-    migrate: typeof migrate;
-    findOne: <T>(model: import("mongoose").Model<T, {}, {}, {}, import("mongoose").IfAny<T, any, import("mongoose").Document<unknown, {}, T> & import("mongoose").Require_id<T>>, any>, filter: object, sort: object) => Promise<T>;
-    findAll: <T_1>(model: import("mongoose").Model<T_1, {}, {}, {}, import("mongoose").IfAny<T_1, any, import("mongoose").Document<unknown, {}, T_1> & import("mongoose").Require_id<T_1>>, any>, filter: object, sort: object) => Promise<T_1[]>;
-    findList: <T_2>(model: import("mongoose").Model<T_2, {}, {}, {}, import("mongoose").IfAny<T_2, any, import("mongoose").Document<unknown, {}, T_2> & import("mongoose").Require_id<T_2>>, any>, filter: object, p: import("..").Pager, sort: object) => Promise<import("..").ResultList<T_2>>;
-    connect: ({ host, username, password, database }: import("..").ConnectArg) => Promise<import("mongoose").Connection>;
-    connectByEnv: () => Promise<import("mongoose").Connection>;
-    connectionFactory: (v: import("..").ConnectArg) => () => Promise<import("mongoose").Connection>;
+import { Pager, ResultList } from "../type";
+import { Model } from "mongoose";
+export declare const fnFinder: {
+    findOne: <T>(model: Model<T, {}, {}, {}, import("mongoose").IfAny<T, any, import("mongoose").Document<unknown, {}, T> & import("mongoose").Require_id<T>>, any>, filter: object, sort: object) => Promise<T>;
+    findAll: <T_1>(model: Model<T_1, {}, {}, {}, import("mongoose").IfAny<T_1, any, import("mongoose").Document<unknown, {}, T_1> & import("mongoose").Require_id<T_1>>, any>, filter: object, sort: object) => Promise<T_1[]>;
+    findList: <T_2>(model: Model<T_2, {}, {}, {}, import("mongoose").IfAny<T_2, any, import("mongoose").Document<unknown, {}, T_2> & import("mongoose").Require_id<T_2>>, any>, filter: object, p: Pager, sort: object) => Promise<ResultList<T_2>>;
 };
