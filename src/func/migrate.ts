@@ -20,7 +20,7 @@ async function createCollection(db: Db, models: Manager<any>[]): Promise<void> {
     }
 }
 
-export async function migrate(db: Db, ...models: Manager[]): Promise<void> {
+export async function migrate(db: Db, ...models: Manager<any>[]): Promise<void> {
     const docKv = new KvManager();
     await createCollection(db, [docKv, ...models]);
 

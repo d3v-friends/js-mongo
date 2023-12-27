@@ -2,7 +2,7 @@
 
 import { Collection, CreateIndexesOptions, Db, Document, IndexSpecification, ObjectId } from 'mongodb';
 
-declare function migrate(db: Db, ...models: Manager[]): Promise<void>;
+declare function migrate(db: Db, ...models: Manager<any>[]): Promise<void>;
 declare function reindex(col: Collection<any>, { list }: IdxArgs): Promise<void>;
 export declare abstract class Manager<DATA extends Document = Document> {
 	abstract readonly colNm: string;
