@@ -21,6 +21,9 @@
     "noUnusedParameters": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
+    // out
+    "inlineSourceMap": true,
+    "declaration": true,
     "rootDir": "./src",
     "baseUrl": "."
   },
@@ -30,8 +33,7 @@
     }
   },
   "include": [
-    "./src",
-
+    "./src"
   ],
   "exclude": [
     "node_modules",

@@ -19,3 +19,4 @@ var func_1 = require("./func");
 Object.defineProperty(exports, "fnMongo", { enumerable: true, get: function () { return func_1.fnMongo; } });
 __exportStar(require("./type"), exports);
 __exportStar(require("./doc"), exports);
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyIuLi8uLi9zcmMvaW5kZXgudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7Ozs7Ozs7Ozs7QUFBQSwrQkFBaUM7QUFBeEIsK0ZBQUEsT0FBTyxPQUFBO0FBQ2hCLHlDQUF1QjtBQUN2Qix3Q0FBc0IifQ==

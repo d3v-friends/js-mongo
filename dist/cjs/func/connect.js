@@ -40,16 +40,18 @@ exports.fnConn = void 0;
 var mongodb_1 = require("mongodb");
 exports.fnConn = {
     connect: function (_a) {
-        var host = _a.host, username = _a.username, password = _a.password, database = _a.database;
+        var host = _a.host, username = _a.username, password = _a.password, database = _a.database, opts = _a.opts;
         return __awaiter(void 0, void 0, void 0, function () {
             var client;
             return __generator(this, function (_b) {
-                client = new mongodb_1.MongoClient("mongodb://".concat(host), {
-                    auth: {
-                        username: username,
-                        password: password,
-                    },
-                });
+                if (!opts) {
+                    opts = {};
+                }
+                opts.auth = {
+                    username: username,
+                    password: password,
+                };
+                client = new mongodb_1.MongoClient("mongodb://".concat(host), opts);
                 return [2 /*return*/, client.db(database)];
             });
         });
@@ -60,3 +62,4 @@ exports.fnConn = {
         };
     },
 };
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiY29ubmVjdC5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbIi4uLy4uLy4uL3NyYy9mdW5jL2Nvbm5lY3QudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7O0FBQUEsbUNBQTBDO0FBSzdCLFFBQUEsTUFBTSxHQUFHO0lBQ2xCLE9BQU8sRUFBRSxVQUFPLEVBQXdEO1lBQXRELElBQUksVUFBQSxFQUFFLFFBQVEsY0FBQSxFQUFFLFFBQVEsY0FBQSxFQUFFLFFBQVEsY0FBQSxFQUFFLElBQUksVUFBQTs7OztnQkFDdEQsSUFBSSxDQUFDLElBQUksRUFBRSxDQUFDO29CQUNSLElBQUksR0FBRyxFQUFFLENBQUM7Z0JBQ2QsQ0FBQztnQkFFRCxJQUFJLENBQUMsSUFBSSxHQUFHO29CQUNSLFFBQVEsVUFBQTtvQkFDUixRQUFRLFVBQUE7aUJBQ1gsQ0FBQztnQkFFSSxNQUFNLEdBQUcsSUFBSSxxQkFBVyxDQUFDLG9CQUFhLElBQUksQ0FBRSxFQUFFLElBQUksQ0FBQyxDQUFDO2dCQUMxRCxzQkFBTyxNQUFNLENBQUMsRUFBRSxDQUFDLFFBQVEsQ0FBQyxFQUFDOzs7S0FDOUI7SUFDRCxpQkFBaUIsRUFBRSxVQUFDLENBQWE7UUFDN0IsT0FBTztZQUNILE9BQU8sY0FBTSxDQUFDLE9BQU8sQ0FBQyxDQUFDLENBQUMsQ0FBQztRQUM3QixDQUFDLENBQUM7SUFDTixDQUFDO0NBQ0osQ0FBQyJ9
