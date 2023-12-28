@@ -1,5 +1,6 @@
 import { JsError } from "@js-pure";
-import { Pager, ResultList, MongooseModel } from "../type";
+import { MongooseModel } from "../type/manager";
+import { Pager, ResultList } from "../type";
 
 export const fnFinder = {
     findOne: async <T>(model: MongooseModel<T>, filter: object, sort: object): Promise<T> => {
