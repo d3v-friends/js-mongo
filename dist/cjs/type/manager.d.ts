@@ -25,9 +25,9 @@
 import { Connection, Schema } from "mongoose";
 import { FnMigrate, MongooseModel } from "../type";
 export declare abstract class Manager<T> {
-    abstract readonly schema: Schema<T>;
-    abstract readonly colNm: string;
-    abstract readonly migrate: FnMigrate<T>[];
-    protected constructor();
+    readonly colNm: string;
+    readonly schema: Schema<T>;
+    readonly migrate: FnMigrate<T>[];
+    protected constructor(colNm: string, schema: Schema<T>, migrate: FnMigrate<T>[]);
     model(conn: Connection): MongooseModel<T>;
 }

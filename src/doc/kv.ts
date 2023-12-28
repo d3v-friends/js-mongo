@@ -8,28 +8,27 @@ interface Kv {
 }
 
 export class KvManager extends Manager<Kv> {
-    public readonly colNm: string;
-    public readonly schema = new Schema<Kv>(
-        {
-            key: {
-                type: String,
-                unique: true,
-                required: true,
-            },
-            value: {
-                type: String,
-                required: true,
-            },
-        },
-        {
-            timestamps: true,
-        },
-    );
-    public readonly migrate = [];
-
-    constructor(...colNms: string[]) {
-        super();
-        this.colNm = fnParam.string(colNms, "kvs");
+    constructor(colNm = "kvs") {
+        super(
+            colNm,
+            new Schema<Kv>(
+                {
+                    key: {
+                        type: String,
+                        unique: true,
+                        required: true,
+                    },
+                    value: {
+                        type: String,
+                        required: true,
+                    },
+                },
+                {
+                    timestamps: true,
+                },
+            ),
+            [],
+        );
     }
 
     public async get<T>(conn: Connection, key: string, ...defs: T[]): Promise<T> {
@@ -40,9 +39,13 @@ export class KvManager extends Manager<Kv> {
         }
 
         if (defs.length === 0) {
-            throw new JsError("no has data", { key }, {
-                ko: "서버에러. 다시 시도하여 주십시오.",
-            });
+            throw new JsError(
+                "no has data",
+                { key },
+                {
+                    ko: "서버에러. 다시 시도하여 주십시오.",
+                },
+            );
         }
 
         const def = defs[0];
@@ -65,6 +68,7 @@ export class KvManager extends Manager<Kv> {
             },
             {
                 upsert: true,
-            });
+            },
+        );
     }
 }
