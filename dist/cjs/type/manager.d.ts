@@ -28,5 +28,6 @@ export declare abstract class Manager<T> {
     abstract readonly schema: Schema<T>;
     abstract readonly colNm: string;
     abstract readonly migrate: FnMigrate<T>[];
+    protected constructor();
     model(conn: Connection): MongooseModel<T>;
 }
