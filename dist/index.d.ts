@@ -3,17 +3,17 @@
 import { Connection, IndexDirection, Schema } from 'mongoose';
 
 declare function migrate(conn: Connection, ...models: Manager<any>[]): Promise<void>;
-export declare abstract class Manager<T extends object> {
+export declare class KvManager extends Manager<Kv> {
+	constructor(colNm?: string);
+	get<T>(conn: Connection, key: string, ...defs: T[]): Promise<T>;
+	set<T>(conn: Connection, key: string, value: T): Promise<void>;
+}
+export declare class Manager<T extends object> {
 	readonly colNm: string;
 	readonly schema: Schema<T>;
 	readonly migrate: FnMigrate<T>[];
 	protected constructor(colNm: string, schema: Schema<T>, migrate: FnMigrate<T>[]);
 	model(conn: Connection): MongooseModel<T>;
-}
-export declare class KvManager extends Manager<Kv> {
-	constructor(colNm?: string);
-	get<T>(conn: Connection, key: string, ...defs: T[]): Promise<T>;
-	set<T>(conn: Connection, key: string, value: T): Promise<void>;
 }
 export declare const fnMongo: {
 	migrate: typeof migrate;
