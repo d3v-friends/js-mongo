@@ -3,7 +3,7 @@
 import { Connection, IndexDirection, Schema } from 'mongoose';
 
 declare function migrate(conn: Connection, ...models: Manager<any>[]): Promise<void>;
-export declare abstract class Manager<T> {
+export declare abstract class Manager<T extends object> {
 	readonly colNm: string;
 	readonly schema: Schema<T>;
 	readonly migrate: FnMigrate<T>[];

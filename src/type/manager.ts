@@ -1,7 +1,7 @@
 import { Connection, Schema } from "mongoose";
 import { FnMigrate, MongooseModel } from "@src/type";
 
-export abstract class Manager<T> {
+export abstract class Manager<T extends object> {
     protected constructor(
         public readonly colNm: string,
         public readonly schema: Schema<T>,
