@@ -22,13 +22,20 @@
 /// <reference types="mongoose/types/validation" />
 /// <reference types="mongoose/types/virtuals" />
 /// <reference types="mongoose/types/inferschematype" />
-import { Connection } from "mongoose";
-import { Manager } from "../type/manager";
+import { Schema, Connection } from "mongoose";
+import { FnMigrate, Manager } from "../type/manager";
 interface Kv {
     key: string;
     value: string;
 }
 export declare class KvManager extends Manager<Kv> {
+    readonly migrate: FnMigrate<Kv>[];
+    readonly colNm: string;
+    readonly schema: Schema<Kv, import("mongoose").Model<Kv, any, any, any, import("mongoose").Document<unknown, any, Kv> & Kv & {
+        _id: import("mongoose").Types.ObjectId;
+    }, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, Kv, import("mongoose").Document<unknown, {}, import("mongoose").FlatRecord<Kv>> & import("mongoose").FlatRecord<Kv> & {
+        _id: import("mongoose").Types.ObjectId;
+    }>;
     constructor(colNm?: string);
     get<T>(conn: Connection, key: string, ...defs: T[]): Promise<T>;
     set<T>(conn: Connection, key: string, value: T): Promise<void>;

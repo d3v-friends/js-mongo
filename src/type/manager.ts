@@ -1,11 +1,9 @@
 import { Connection, Schema } from "mongoose";
 
-export class Manager<T extends object> {
-    protected constructor(
-        public readonly colNm: string,
-        public readonly schema: Schema<T>,
-        public readonly migrate: FnMigrate<T>[],
-    ) {}
+export abstract class Manager<T extends object> {
+    public abstract readonly colNm: string;
+    public abstract readonly schema: Schema<T>;
+    public abstract readonly migrate: FnMigrate<T>[];
 
     public model(conn: Connection): MongooseModel<T> {
         return conn.model(this.colNm, this.schema);

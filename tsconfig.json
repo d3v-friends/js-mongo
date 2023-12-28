@@ -12,7 +12,6 @@
     "allowJs": true,
     "checkJs": false,
     "skipLibCheck": true,
-    "incremental": true,
     // type check
     "strict": true,
     "alwaysStrict": true,
