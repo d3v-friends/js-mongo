@@ -6,12 +6,13 @@
       "esnext"
     ],
     "target": "es5",
-    "module": "esnext",
-    "moduleResolution": "bundler",
+    "module": "commonjs",
+    "moduleResolution": "node",
     "esModuleInterop": true,
     "allowJs": true,
     "checkJs": false,
     "skipLibCheck": true,
+    "incremental": true,
     // type check
     "strict": true,
     "alwaysStrict": true,
@@ -22,9 +23,10 @@
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     // path
+    "outDir": "dist",
+    "rootDir": "src",
     "declaration": true,
-    "inlineSourceMap": true,
-    "rootDir": "./src"
+    "inlineSourceMap": true
   },
   "ts-node": {
     "compilerOptions": {
@@ -32,12 +34,12 @@
     }
   },
   "include": [
-    "./src"
+    "src"
   ],
   "exclude": [
-    "./node_modules",
-    "./dist",
-    "./etc",
-    "./config"
+    "node_modules",
+    "dist",
+    "etc",
+    "config"
   ]
 }
