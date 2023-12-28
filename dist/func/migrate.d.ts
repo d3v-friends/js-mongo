@@ -23,5 +23,5 @@
 /// <reference types="mongoose/types/virtuals" />
 /// <reference types="mongoose/types/inferschematype" />
 import { Connection } from "mongoose";
-import { Manager } from "../type/manager";
+import { Manager } from "../type";
 export declare function migrate(conn: Connection, ...models: Manager<any>[]): Promise<void>;

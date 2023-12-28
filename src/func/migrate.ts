@@ -1,7 +1,7 @@
 import { JsError } from "@js-pure";
 import { Connection } from "mongoose";
 import { KvManager } from "../doc";
-import { Manager } from "../type/manager";
+import { Manager } from "../type";
 
 const keyMigration = "migration";
 

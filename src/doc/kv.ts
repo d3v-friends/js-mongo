@@ -7,7 +7,7 @@ interface Kv {
     value: string;
 }
 
-export class KvManager extends Manager<Kv> {
+export class KvManager implements Manager<Kv> {
     public readonly migrate: FnMigrate<Kv>[] = [];
     public readonly colNm: string;
     public readonly schema = new Schema<Kv>(
@@ -28,7 +28,6 @@ export class KvManager extends Manager<Kv> {
     );
 
     constructor(colNm = "kvs") {
-        super();
         this.colNm = colNm;
     }
 
@@ -58,7 +57,7 @@ export class KvManager extends Manager<Kv> {
     }
 
     public async set<T>(conn: Connection, key: string, value: T): Promise<void> {
-        await this.model(conn).updateOne(
+        await conn.model(this.colNm, this.schema).updateOne(
             {
                 key,
             },

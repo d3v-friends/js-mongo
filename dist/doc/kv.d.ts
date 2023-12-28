@@ -28,7 +28,7 @@ interface Kv {
     key: string;
     value: string;
 }
-export declare class KvManager extends Manager<Kv> {
+export declare class KvManager implements Manager<Kv> {
     readonly migrate: FnMigrate<Kv>[];
     readonly colNm: string;
     readonly schema: Schema<Kv, import("mongoose").Model<Kv, any, any, any, import("mongoose").Document<unknown, any, Kv> & Kv & {
