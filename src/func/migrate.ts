@@ -1,7 +1,7 @@
 import { JsError } from "@js-pure";
 import { Connection } from "mongoose";
-import { KvManager } from "@src/doc";
-import { Manager } from "@src/type";
+import { KvManager } from "../doc";
+import { Manager } from "../type";
 
 const keyMigration = "migration";
 
@@ -9,9 +9,13 @@ export async function migrate(conn: Connection, ...models: Manager<any>[]): Prom
     const docKv = new KvManager();
     const isMig = await docKv.get(conn, keyMigration, false);
     if (isMig) {
-        throw new JsError("in processing migration", {}, {
-            ko: "마이그레이션이 이미 실행중입니다.",
-        });
+        throw new JsError(
+            "in processing migration",
+            {},
+            {
+                ko: "마이그레이션이 이미 실행중입니다.",
+            },
+        );
     }
 
     await docKv.set(conn, keyMigration, true);

@@ -1,6 +1,6 @@
-import { fnParam, JsError } from "@js-pure";
+import { JsError } from "@js-pure";
 import { Schema, Connection } from "mongoose";
-import { Manager } from "@src/type";
+import { Manager } from "../type";
 
 interface Kv {
     key: string;

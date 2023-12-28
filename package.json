@@ -24,13 +24,6 @@
   },
   "main": "src/index.ts",
   "types": "src/index.ts",
-  "exports": {
-    ".": {
-      "require": "./dist/cjs/index.js",
-      "import": "./dist/mjs/index.js",
-      "types": "./src/index.ts"
-    }
-  },
   "engines": {
     "node": "^20.10.0"
   }

@@ -1,5 +1,5 @@
 import { Connection, Schema } from "mongoose";
-import { FnMigrate, MongooseModel } from "@src/type";
+import { FnMigrate, MongooseModel } from "../type";
 
 export class Manager<T extends object> {
     protected constructor(

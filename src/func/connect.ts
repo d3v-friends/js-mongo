@@ -1,5 +1,5 @@
 import { fnEnv } from "@js-pure";
-import { ConnectArg } from "@src/type";
+import { ConnectArg } from "../type";
 import { connect, Connection } from "mongoose";
 
 type ConnFactory = () => Promise<Connection>;
@@ -12,7 +12,6 @@ export const fnConn = {
             dbName: database,
         });
         return client.connection;
-
     },
     connectByEnv: async (): Promise<Connection> => {
         return fnConn.connect({

@@ -24,12 +24,7 @@
     // path
     "declaration": true,
     "inlineSourceMap": true,
-    "rootDir": "./src",
-    "paths": {
-      "@src/*": [
-        "./src/*"
-      ]
-    }
+    "rootDir": "./src"
   },
   "ts-node": {
     "compilerOptions": {
@@ -37,12 +32,12 @@
     }
   },
   "include": [
-    "src"
+    "./src"
   ],
   "exclude": [
-    "node_modules",
-    "dist",
-    "etc",
-    "config"
+    "./node_modules",
+    "./dist",
+    "./etc",
+    "./config"
   ]
 }

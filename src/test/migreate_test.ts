@@ -1,7 +1,7 @@
 import { beforeAll, describe, test } from "@jest/globals";
 import { fnEnv } from "@js-pure";
 import { Connection } from "mongoose";
-import { fnMongo } from "@src/func";
+import { fnMongo } from "../func";
 
 describe("migrate", () => {
     let conn: Connection;
