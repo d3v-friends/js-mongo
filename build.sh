@@ -1,3 +1,3 @@
 rm -rf ./dist
-tsc -p tsconfig.json
+tsc -p ./config/tsconfig.json
 git add ./dist --all

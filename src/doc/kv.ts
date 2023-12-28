@@ -1,6 +1,6 @@
 import { JsError } from "@js-pure";
 import { Schema, Connection } from "mongoose";
-import { FnMigrate, Manager } from "../type/manager";
+import { FnMigrate, Manager } from "../type";
 
 interface Kv {
     key: string;

@@ -23,7 +23,7 @@
 /// <reference types="mongoose/types/virtuals" />
 /// <reference types="mongoose/types/inferschematype" />
 import { Schema, Connection } from "mongoose";
-import { FnMigrate, Manager } from "../type/manager";
+import { FnMigrate, Manager } from "../type";
 interface Kv {
     key: string;
     value: string;
@@ -41,3 +41,4 @@ export declare class KvManager implements Manager<Kv> {
     set<T>(conn: Connection, key: string, value: T): Promise<void>;
 }
 export {};
+//# sourceMappingURL=kv.d.ts.map

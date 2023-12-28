@@ -1,5 +1,5 @@
 import { JsError } from "@js-pure";
-import { MongooseModel } from "../type/manager";
+import { MongooseModel } from "../type";
 import { Pager, ResultList } from "../type";
 
 export const fnFinder = {

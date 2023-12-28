@@ -31,3 +31,4 @@ export declare const fnConn: {
     connectionFactory: (v: ConnectArg) => ConnFactory;
 };
 export {};
+//# sourceMappingURL=connect.d.ts.map

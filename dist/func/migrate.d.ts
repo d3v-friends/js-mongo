@@ -25,3 +25,4 @@
 import { Connection } from "mongoose";
 import { Manager } from "../type";
 export declare function migrate(conn: Connection, ...models: Manager<any>[]): Promise<void>;
+//# sourceMappingURL=migrate.d.ts.map
